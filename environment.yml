@@ -6,5 +6,8 @@ dependencies:
   - scipy
   - matplotlib
   - pandas
+  - ipywidgets
+  - bqplot
   - pip:
     - pillow
+    - bqplot
