@@ -2,3 +2,6 @@ matplotlib
 numpy
 PIL
 scipy
+pandas
+bqplot
+ipywidgets
