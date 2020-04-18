@@ -8,6 +8,8 @@ dependencies:
   - pandas
   - ipywidgets
   - bqplot
+  - geopandas
   - pip:
     - pillow
     - bqplot
+    - geopandas
