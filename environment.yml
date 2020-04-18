@@ -9,7 +9,10 @@ dependencies:
   - ipywidgets
   - bqplot
   - geopandas
+  - requests
   - pip:
     - pillow
     - bqplot
     - geopandas
+    - requests
+    - descartes

@@ -6,3 +6,4 @@ pandas
 bqplot
 ipywidgets
 geopandas
+requests
