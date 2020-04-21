@@ -10,6 +10,7 @@ dependencies:
   - bqplot
   - geopandas
   - requests
+  - pip
   - pip:
     - pillow
     - bqplot
