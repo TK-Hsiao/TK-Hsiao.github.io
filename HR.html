@@ -7,19 +7,22 @@
     </head>
     <body>
         <p>
-            SOME TXT7.
+            SOME TXT8.
         </p>
         <div id="myviz">
         </div>
     </body>
     <script>
-        mySpec = {
+        var myData = [
+            "format": {"type": "csv"},
+            "url": "https://uofi.box.com/v/buildinginventorycsv"
+            ];
+        var mySpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
             "data": [
                 {
                     "name":"myData",
-                    "format": {"type": "csv"},
-                    "url": "https://uofi.box.com/v/buildinginventorycsv"
+                    
                 }
             ],
             "mark": "bar",
@@ -32,6 +35,11 @@
                 }
             }
         };
-        vegaEmbed('#myviz', mySpec);
+        vegaEmbed('#myviz', mySpec)
+            .then((res) => res.view
+                  .renderer('svg')
+                  .insert("myData",  myData)
+                  .run()
+                 );
     </script>
 </html>
