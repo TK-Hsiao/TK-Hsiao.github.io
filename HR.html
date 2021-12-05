@@ -7,7 +7,7 @@
     </head>
     <body>
         <p>
-            SOME TXT4.
+            SOME TXT5.
         </p>
         <div id="myviz">
         </div>
@@ -15,10 +15,11 @@
     <script>
         mySpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-            "data": {
-                "url": "https://uofi.box.com/v/buildinginventorycsv", 
-                "format": {"type": "csv"}
-            },
+            "data": [
+                "name": "myData",
+                "format": {"type": "csv"},
+                "url": "https://uofi.box.com/v/buildinginventorycsv"
+            ]
             "mark": "bar",
             "encoding": {
                 "x": {"field": "Year Constructed"}, 
