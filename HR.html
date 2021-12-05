@@ -7,7 +7,7 @@
     </head>
     <body>
         <p>
-            SOME TXT14.
+            SOME TXT15.
         </p>
         <div id="myviz">
         </div>
@@ -16,17 +16,17 @@
         mySpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
             "data": {
-                "url": "building_inventory.csv", 
+                "url": "https://media.githubusercontent.com/media/TK-Hsiao/TK-Hsiao.github.io/master/stage3.csv", 
                 "format": {"type": "csv"}
             },
             "mark": "point",
             "encoding": {
                 "x": {
-                    "field": "Year Acquired",
+                    "field": "n_killed",
                     "type": "quantitative"
                 }, 
                 "y": {
-                    "field": "Year Constructed",
+                    "field": "n_injured",
                     "type": "quantitative"
                 }
             }
