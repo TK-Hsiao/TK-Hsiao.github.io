@@ -17,26 +17,20 @@
     </body>
     <script>
         mySpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Square Footage of Buildings Constructed over the Years",
-  "height": 500,
-  "width": 700,
-  "data": {
-    "url": "https://uofi.box.com/s/m716lyfs14si1j5ndfuwn5kijhmc6qzq", 
-    "format": {"type": "csv"}
-      },
-  "mark": {"type": "bar", "clip": true},
-  "encoding": {
-    "x": {
-      "field": "Year Constructed",
-      "type": "quantitative",
-      "scale": {"domain": [1800, 2020]}
-    },
-    "y": {"field": "Square Footage", "type": "quantitative"}
-  }
-},
-  "config": {}
-};
+            "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+            "data": {
+                "url": "building_inventory.csv", "formatType": "csv"
+            },
+            "mark": "bar",
+            "encoding": {
+                "x": {"field": "Year Constructed"}, 
+                "y": {
+                    "aggregate": "sum",
+                    "field": "Square Footage",
+                    "type": "quantitative"
+                }
+            }
+        }
         vegaEmbed('#myviz', mySpec);
     </script>
 </html>
