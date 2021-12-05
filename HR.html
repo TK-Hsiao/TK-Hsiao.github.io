@@ -7,7 +7,7 @@
     </head>
     <body>
         <p>
-            SOME TXT8.
+            SOME TXT9.
         </p>
         <div id="myviz">
         </div>
@@ -17,15 +17,15 @@
             "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
             "data": {
                 "name":"myData",
-                "url": "building_inventory.csv", 
+                "url": "stage3.csv", 
                 "format": {"type": "csv"}
             },
             "mark": "bar",
             "encoding": {
-                "x": {"field": "Year Constructed"}, 
+                "x": {"field": "state"}, 
                 "y": {
                     "aggregate": "sum",
-                    "field": "Square Footage",
+                    "field": "n_killed",
                     "type": "quantitative"
                 }
             }
