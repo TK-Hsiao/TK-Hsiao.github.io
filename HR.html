@@ -7,7 +7,7 @@
     </head>
     <body>
         <p>
-            SOME TXT15.
+            SOME TXT16.
         </p>
         <div id="myviz">
         </div>
@@ -19,13 +19,14 @@
                 "url": "https://media.githubusercontent.com/media/TK-Hsiao/TK-Hsiao.github.io/master/stage3.csv", 
                 "format": {"type": "csv"}
             },
-            "mark": "point",
+            "mark": "bar",
             "encoding": {
                 "x": {
-                    "field": "n_killed",
-                    "type": "quantitative"
+                    "field": "state",
+                    "type": "nominal"
                 }, 
                 "y": {
+                    "aggregate": "mean",
                     "field": "n_injured",
                     "type": "quantitative"
                 }
