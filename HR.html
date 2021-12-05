@@ -7,7 +7,7 @@
     </head>
     <body>
         <p>
-            SOME TXT6.
+            SOME TXT7.
         </p>
         <div id="myviz">
         </div>
@@ -15,9 +15,13 @@
     <script>
         mySpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-            "data": {
-                "name": "myData",
-            },
+            "data": [
+                {
+                    "name":"myData",
+                    "format": {"type": "csv"},
+                    "url": "https://uofi.box.com/v/buildinginventorycsv"
+                }
+            ],
             "mark": "bar",
             "encoding": {
                 "x": {"field": "Year Constructed"}, 
@@ -28,14 +32,6 @@
                 }
             }
         };
-        vegaEmbed('#myviz', mySpec).then(res =>
-                                         res.view
-                                         .insert('myData', [
-            {
-                "name": "myData",
-                "format": {"type": "csv"},
-                "url": "https://uofi.box.com/v/buildinginventorycsv"
-            }
-        ]).run();
+        vegaEmbed('#myviz', mySpec);
     </script>
 </html>
