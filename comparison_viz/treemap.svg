@@ -7,7 +7,7 @@
   <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2022-10-23T00:14:15.647645</dc:date>
+    <dc:date>2022-10-23T00:26:55.373660</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -31,112 +31,112 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path clip-path="url(#p550d26e575)" d="M 90 378 
-L 336.443956 378 
-L 336.443956 192.139751 
-L 90 192.139751 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 10.8 421.2 
+L 319.252435 421.2 
+L 319.252435 196.453611 
+L 10.8 196.453611 
 z
 " style="fill:#8c564b;opacity:0.6;"/>
    </g>
    <g id="patch_3">
-    <path clip-path="url(#p550d26e575)" d="M 90 192.139751 
-L 336.443956 192.139751 
-L 336.443956 51.84 
-L 90 51.84 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 10.8 196.453611 
+L 319.252435 196.453611 
+L 319.252435 26.8 
+L 10.8 26.8 
 z
 " style="fill:#c49c94;opacity:0.6;"/>
    </g>
    <g id="patch_4">
-    <path clip-path="url(#p550d26e575)" d="M 336.443956 378 
-L 508.807947 378 
-L 508.807947 238.108668 
-L 336.443956 238.108668 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 319.252435 421.2 
+L 534.98543 421.2 
+L 534.98543 252.040258 
+L 319.252435 252.040258 
 z
 " style="fill:#98df8a;opacity:0.6;"/>
    </g>
    <g id="patch_5">
-    <path clip-path="url(#p550d26e575)" d="M 508.807947 378 
-L 648 378 
-L 648 238.108668 
-L 508.807947 238.108668 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 534.98543 421.2 
+L 709.2 421.2 
+L 709.2 252.040258 
+L 534.98543 252.040258 
 z
 " style="fill:#1f77b4;opacity:0.6;"/>
    </g>
    <g id="patch_6">
-    <path clip-path="url(#p550d26e575)" d="M 336.443956 238.108668 
-L 493.940118 238.108668 
-L 493.940118 142.783968 
-L 336.443956 142.783968 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 319.252435 252.040258 
+L 516.376664 252.040258 
+L 516.376664 136.77149 
+L 319.252435 136.77149 
 z
 " style="fill:#ff7f0e;opacity:0.6;"/>
    </g>
    <g id="patch_7">
-    <path clip-path="url(#p550d26e575)" d="M 493.940118 238.108668 
-L 648 238.108668 
-L 648 142.783968 
-L 493.940118 142.783968 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 516.376664 252.040258 
+L 709.2 252.040258 
+L 709.2 136.77149 
+L 516.376664 136.77149 
 z
 " style="fill:#aec7e8;opacity:0.6;"/>
    </g>
    <g id="patch_8">
-    <path clip-path="url(#p550d26e575)" d="M 336.443956 142.783968 
-L 480.115914 142.783968 
-L 480.115914 51.84 
-L 336.443956 51.84 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 319.252435 136.77149 
+L 499.074112 136.77149 
+L 499.074112 26.8 
+L 319.252435 26.8 
 z
 " style="fill:#c5b0d5;opacity:0.6;"/>
    </g>
    <g id="patch_9">
-    <path clip-path="url(#p550d26e575)" d="M 480.115914 142.783968 
-L 566.35911 142.783968 
-L 566.35911 51.84 
-L 480.115914 51.84 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 499.074112 136.77149 
+L 607.017208 136.77149 
+L 607.017208 26.8 
+L 499.074112 26.8 
 z
 " style="fill:#2ca02c;opacity:0.6;"/>
    </g>
    <g id="patch_10">
-    <path clip-path="url(#p550d26e575)" d="M 566.35911 142.783968 
-L 648 142.783968 
-L 648 77.91952 
-L 566.35911 77.91952 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 607.017208 136.77149 
+L 709.2 136.77149 
+L 709.2 58.335942 
+L 607.017208 58.335942 
 z
 " style="fill:#ffbb78;opacity:0.6;"/>
    </g>
    <g id="patch_11">
-    <path clip-path="url(#p550d26e575)" d="M 566.35911 77.91952 
-L 627.066438 77.91952 
-L 627.066438 51.84 
-L 566.35911 51.84 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 607.017208 58.335942 
+L 682.999284 58.335942 
+L 682.999284 26.8 
+L 607.017208 26.8 
 z
 " style="fill:#d62728;opacity:0.6;"/>
    </g>
    <g id="patch_12">
-    <path clip-path="url(#p550d26e575)" d="M 627.066438 77.91952 
-L 648 77.91952 
-L 648 57.055904 
-L 627.066438 57.055904 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 682.999284 58.335942 
+L 709.2 58.335942 
+L 709.2 33.107188 
+L 682.999284 33.107188 
 z
 " style="fill:#e377c2;opacity:0.6;"/>
    </g>
    <g id="patch_13">
-    <path clip-path="url(#p550d26e575)" d="M 627.066438 57.055904 
-L 644.511073 57.055904 
-L 644.511073 51.84 
-L 627.066438 51.84 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 682.999284 33.107188 
+L 704.833214 33.107188 
+L 704.833214 26.8 
+L 682.999284 26.8 
 z
 " style="fill:#ff9896;opacity:0.6;"/>
    </g>
    <g id="patch_14">
-    <path clip-path="url(#p550d26e575)" d="M 644.511073 57.055904 
-L 648 57.055904 
-L 648 51.84 
-L 644.511073 51.84 
+    <path clip-path="url(#p7acf5fd7a3)" d="M 704.833214 33.107188 
+L 709.2 33.107188 
+L 709.2 26.8 
+L 704.833214 26.8 
 z
 " style="fill:#9467bd;opacity:0.6;"/>
    </g>
    <g id="text_1">
     <!-- Storage -->
-    <g transform="translate(193.657915 287.82925)scale(0.1 -0.1)">
+    <g transform="translate(145.462155 311.586181)scale(0.1 -0.1)">
      <defs>
       <path d="M 53.515625 70.515625 
 L 53.515625 60.890625 
@@ -327,7 +327,7 @@ z
    </g>
    <g id="text_2">
     <!-- Unusual -->
-    <g transform="translate(192.99854 124.74925)scale(0.1 -0.1)">
+    <g transform="translate(144.80278 114.386181)scale(0.1 -0.1)">
      <defs>
       <path d="M 8.6875 72.90625 
 L 18.609375 72.90625 
@@ -434,7 +434,7 @@ z
    </g>
    <g id="text_3">
     <!-- Industrial -->
-    <g transform="translate(399.176732 310.813709)scale(0.1 -0.1)">
+    <g transform="translate(403.669714 339.379504)scale(0.1 -0.1)">
      <defs>
       <path d="M 9.8125 72.90625 
 L 19.671875 72.90625 
@@ -494,7 +494,7 @@ z
    </g>
    <g id="text_4">
     <!-- Assembly -->
-    <g transform="translate(554.304755 310.813709)scale(0.1 -0.1)">
+    <g transform="translate(597.993496 339.379504)scale(0.1 -0.1)">
      <defs>
       <path d="M 34.1875 63.1875 
 L 20.796875 26.90625 
@@ -594,7 +594,7 @@ z
    </g>
    <g id="text_5">
     <!-- Detention &amp; Correc -->
-    <g transform="translate(367.117818 193.205693)scale(0.1 -0.1)">
+    <g transform="translate(369.74033 197.165249)scale(0.1 -0.1)">
      <defs>
       <path d="M 19.671875 64.796875 
 L 19.671875 8.109375 
@@ -718,7 +718,7 @@ z
    </g>
    <g id="text_6">
     <!-- Business -->
-    <g transform="translate(548.922403 193.205693)scale(0.1 -0.1)">
+    <g transform="translate(590.740676 197.165249)scale(0.1 -0.1)">
      <defs>
       <path d="M 19.671875 34.8125 
 L 19.671875 8.109375 
@@ -762,7 +762,7 @@ z
    </g>
    <g id="text_7">
     <!-- Residential -->
-    <g transform="translate(380.738529 100.071359)scale(0.1 -0.1)">
+    <g transform="translate(381.621867 84.54512)scale(0.1 -0.1)">
      <defs>
       <path d="M 44.390625 34.1875 
 Q 47.5625 33.109375 50.5625 29.59375 
@@ -807,7 +807,7 @@ z
    </g>
    <g id="text_8">
     <!-- Health Care -->
-    <g transform="translate(493.6547 100.071359)scale(0.1 -0.1)">
+    <g transform="translate(523.462848 84.54512)scale(0.1 -0.1)">
      <defs>
       <path d="M 9.8125 72.90625 
 L 19.671875 72.90625 
@@ -858,7 +858,7 @@ z
    </g>
    <g id="text_9">
     <!-- Education -->
-    <g transform="translate(582.286586 113.111119)scale(0.1 -0.1)">
+    <g transform="translate(633.215635 100.313091)scale(0.1 -0.1)">
      <defs>
       <path d="M 9.8125 72.90625 
 L 55.90625 72.90625 
@@ -888,7 +888,7 @@ z
    </g>
    <g id="text_10">
     <!-- Mercantile -->
-    <g transform="translate(570.582305 67.639135)scale(0.1 -0.1)">
+    <g transform="translate(618.877778 45.327346)scale(0.1 -0.1)">
      <defs>
       <path d="M 9.8125 72.90625 
 L 24.515625 72.90625 
@@ -920,7 +920,7 @@ z
    </g>
    <g id="text_11">
     <!-- Building Usage Descriptions -->
-    <g transform="translate(284.85375 45.84)scale(0.12 -0.12)">
+    <g transform="translate(275.85375 20.8)scale(0.12 -0.12)">
      <defs>
       <path d="M 18.109375 8.203125 
 L 18.109375 -20.796875 
@@ -981,8 +981,8 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p550d26e575">
-   <rect height="326.16" width="558" x="90" y="51.84"/>
+  <clipPath id="p7acf5fd7a3">
+   <rect height="394.4" width="698.4" x="10.8" y="26.8"/>
   </clipPath>
  </defs>
 </svg>
