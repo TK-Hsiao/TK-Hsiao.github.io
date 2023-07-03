@@ -1,0 +1,440 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+      <title>Appropriateness of citing retracted articles in biomedicine_ISSI2023</title>
+
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1/dist/reset.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1/dist/reveal.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1/dist/theme/white.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/5.11.2/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://unpkg.com/reveal.js-copycode@1.0.1/plugin/copycode/copycode.css">
+
+      <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+
+      <style>
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+          text-transform: none;
+        }
+      </style>
+
+    </head>
+    <body>
+      <div class="reveal">
+        <section class="slides">
+          <section data-markdown data-separator="---" data-separator-notes="^Note:" class="center" style="vertical-align:top;text-align:left;" data-transition="none">
+            <script type="text/template">
+              <div style="font-size:88%;line-height:1.5">
+                Appropriateness of citing retracted articles in biomedicine:
+              </div>
+              <div style="font-size:70%;line-height:1.5">
+                Sentiments expressed in citations without acknowledgement of retraction
+              </div>
+              <br>
+              <div style="font-size:60%;">
+                Tzu-Kun Hsiao
+              </div>
+
+              Note:
+
+            </script>
+          </section>
+          <section data-markdown data-separator="---" data-separator-notes="^Note:" style="vertical-align:top;text-align:left;font-size:68%;line-height:1.5;" data-transition="none">
+            <textarea data-template>
+              ## Motivation
+              
+              - Retraction is commonly regarded as a sign of problematic research.
+              - Citations to retracted articles are commonly viewed as problematic without consideration of the context.
+                <ul>
+                  <li>
+                    Reasons behind citing retracted articles
+                  </li>
+                  <ul>
+                    <li style="font-size: 90%">Exclusion rationale, subject of study, example of problematic science, etc.</li>
+                  </ul>
+                  <li>
+                    Not all citations are positive.
+                    <p style="font-size: 65%;margin-bottom: 30px;">
+                      Another trial of a multivitamin and multimineral supplement in healthy elderly subjects reported beneficial effects after one year in six of seven tests [Retracted PMID: 11527656], <u style="color:brown">though these findings have recently been retracted in the light of concerns</u> about the veracity of the data and possible conflicting commercial interest [Retraction notice PMID: 11527656]
+                    </p>
+                  </li>
+                </ul>
+              - To what extent are the citations to retracted articles problematic?
+                <ul>
+                  <li>
+                    Explore the problematicness of post-retraction citations using the citation contexts.
+                  </li>
+                </ul>
+              
+              ---
+              ## Goals
+
+              - Using post-retraction citation contexts lacking acknowledgement of retractions, this study tried to answer
+                <ul>
+                  <li>How frequently were the retracted articles cited as legitimate work?</li>
+                  <li>How well can the sentiments be automatically identified by a machine learning model?</li>
+                </ul>
+              
+
+              Note:
+              In deatils, we tried to answer two questions.
+              Q1: This was achieved by annotating the sentiments expressed in the citation contexts, which I will explain the details later
+              Q2: The model may be useful for future studies that are interested in similar topics. 
+              
+              ---
+              <!-- .slide: data-visibility="hidden"-->
+              ## Data
+
+              - 13,252 post-retraction citation contexts referencing 2,763 retracted articles identified from 2M PMC open access articles (Hsiao & Schneider, 2021)
+              - 12,530 (94.55%) of the 13,252 citation lacked acknowledgements
+
+              - Sentiments expressed in 3,156 citation contexts
+
+              ---
+              ## Data
+
+              <img src="data.png">
+
+              ---
+              ## Citation sentiments
+              
+              <br>
+              <table style="font-size: 63%; border-collapse:collapse">
+                <tr>
+                  <th style="width: 16%; text-align: left; border-top: 1px solid">Sentiment</th>
+                  <th style="width: 62%; text-align: left; border-top: 1px solid">Example</th>
+                  <th style="width: 16%; text-align: left; border-top: 1px solid;">Number of citation contexts</th>
+                  <th style="width: 6%; text-align: center; border-top: 1px solid">%</th>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">Strongly positive</td>
+                  <td style="text-align: left;"><u style="color:brown">Similar to our results,</u> SLA mRNA expression levels were previously reported to be downregulated in human B-cells and were strongly expressed in naïve, pre-germanal center, and germinal-center B-cells based on gene expression analysis. (Retracted PMID: 12438421).</td>
+                  <td style="text-align: center;">582</td>
+                  <td style="text-align: center;">18.44</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">Weakly positive</td>
+                  <td style="text-align: left;">Altered NPM1 expression was observed in many types of tumors, and mutated NPM1 is frequently detected in human hematopoietic malignancies, especially in acute myeloid leukemia (AML) (Retracted PMID: 18401421).</td>
+                  <td style="text-align: center;">2,078</td>
+                  <td style="text-align: center;">65.84</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">Negative</td>
+                  <td style="text-align: left;">The original report of an alphaproteobacterial Sphingomonas-related GAO (Retracted PMID: 15256569) <u style="color:brown">was later shown to be incorrect</u> and the FISH probes were shown to be binding to members of the Defluviicoccus cluster 1.</td>
+                  <td style="text-align: center;">289</td>
+                  <td style="text-align: center;">9.16</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left; border-bottom: 1px solid">Neutral</td>
+                  <td style="text-align: left; border-bottom: 1px solid">The contribution of inflammatory cytokines to tumor development has been investigated by other studies (Retracted PMID: 25544369, Non-retracted PMIDs: 18954521, 18036640)</td>
+                  <td style="text-align: center; border-bottom: 1px solid">207</td>
+                  <td style="text-align: center; border-bottom: 1px solid">6.56</td>
+                </tr>
+                <tr>
+                  <td colspan="4" style="text-align: right;"><em>*Total: 3,156 citation contexts</em></td>
+                </tr>
+              </table>
+
+              Note:
+              - Postive cases cited retracted papers as valid work.
+              - And the strongly positive ones explicitly expressed agreements or used something from or were supported by the retracted work.
+              - Negative cases casted questions on, made corrections to, or disagreed with the retracted work. 
+              - Neutal sentiments are the cases in which the validlity could not be judged from the citation contexts.
+              - Retracted articles are frequently cited as legitimate work without informing the readers about the retractions.
+
+              ---
+              ### Models tested for automatically identifying sentiments
+
+              - Traditional machine-learning models
+                <ul>
+                  <li>
+                    Logistic Regression
+                  </li>
+                  <li>
+                    Support Vector Machine (SVM)
+                  </li>
+                </ul>
+              - Deep learning models
+                <ul>
+                  <li>
+                    Convolutional Neural Network (CNN)
+                  </li>
+                  <li>
+                    Bidirectional Long Short-Term Memory (BiLSTM)
+                  </li>
+                </ul>
+              
+              ---
+              ## Features used for training the models
+              - Customized Bag-of-Words features <!-- .element: style="font-size: 95%"-->
+                <ul>
+                  <li>
+                    Sentiments are often hinted at in verbs, adjectives, and adverbs.
+                    <p style="font-size: 70%;">The original report of an alphaproteobacterial Sphingomonas-related GAO (Retracted PMID: 15256569) <u style="color:brown">was later shown to be incorrect</u> and the FISH probes were shown to be binding to members of the Defluviicoccus cluster 1.</p>
+                  </li>
+                  <li>
+                    Part-of-Speech tags
+                    <ul>
+                      <li style="font-size: 90%;">
+                        Exclude lemmas tagged as proper nouns, numbers, punctuation, and symbols.
+                      </li>
+                      <li style="font-size: 90%;">
+                        Only a selected set of nouns were retained.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              - Word and sentence embeddings <!-- .element: style="font-size: 95%"-->
+                <ul>
+                  <li>
+                    BioWordVec (Zhang et al., 2019) and BioSentVec (Chen et al., 2019)
+                  </li>
+                </ul>
+              - Sentiment scores <!-- .element: style="font-size: 95%"-->
+                <ul>
+                  <li style="font-size: 90%;">
+                    $ SentiSentence = \sum_{i=1}^{n} \frac{SentiTerm_i}{D}$ <br>where $SentiTerm_i$ = 1 for a positive term; $SentiTerm_i$ = -1 for a negative term; $D$ is the distance between the term and the citation marker.
+                  </li>
+                </ul>
+              - Pairwise cosine similarity <!-- .element: style="font-size: 95%"-->
+
+              Note:
+              The features were chosed due to the consideration that they may provide information that can reveal the nuance between citation contexts having different sentiments.
+
+              ---
+              ## Model performance
+              - Best logistic regression model (accuracy=0.62; F1=0.53)
+                <ul>
+                  <li style="font-size: 85%;">
+                    Bag-of-Words, sentence embeddings, sentiment scores, and pairwise cosine similarity
+                  </li>
+                </ul><br>
+              - Best deep learning model (accuracy=0.79; F1=0.60)
+                <br><br>
+                <table style="font-size: 70%; line-height:1.2; margin-left:10px; border-collapse:collapse">
+                  <tr>
+                    <th width="20%" style="border-bottom: 0px solid; border-top: 1px solid;">Model</th>
+                    <th width="30%" style="border-bottom: 0px solid; border-top: 1px solid;">Features</th>
+                    <th width="25%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="2">CNN</th>
+                    <th width="25%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="2">BiLSTM</th>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Accuracy</th>
+                    <th>F1</th>
+                    <th>Accuracy</th>
+                    <th>F1</th>
+                  </tr>
+                  <tr>
+                    <td>Base model</td>
+                    <td>Word embeddings</td>
+                    <td>0.77</td>
+                    <td>0.51</td>
+                    <td>0.78</td>
+                    <td>0.53</td>
+                  </tr>
+                  <tr>
+                    <td>Augmented model 1</td>
+                    <td>Word embeddings<br>+Sentence embeddings</td>
+                    <td><span style="color:brown">0.79</span></td>
+                    <td><span style="color:brown">0.60</span></td>
+                    <td><span style="color:blue">0.78</span></td>
+                    <td><span style="color:blue">0.59</span></td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid;">Augmented model 2</td>
+                    <td style="border-bottom: 1px solid;">Word embeddings<br>+Sentence embeddings<br>+Pairwise cosine similarity<br>+Sentiment scores</td>
+                    <td style="border-bottom: 1px solid;"><span style="color:brown">0.79</span></td>
+                    <td style="border-bottom: 1px solid;"><span style="color:brown">0.60</span></td>
+                    <td style="border-bottom: 1px solid;"><span style="color:blue">0.78</span></td>
+                    <td style="border-bottom: 1px solid;"><span style="color:blue">0.59</span></td>
+                  </tr>
+                </table>
+              
+              Note:
+              For the features side, the differeces shown when looking at the results by the sentiment categories.
+
+              ---
+              ## Model performance
+              <br>
+              <table style="font-size: 70%; line-height:1.2; margin-left:10px; border-collapse:collapse">
+                <tr>
+                  <th width="20%" style="border-bottom: 0px solid; border-top: 1px solid;">Model</th>
+                  <th width="30%" style="border-bottom: 0px solid; border-top: 1px solid;">Features</th>
+                  <th width="20%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="2">Overall</th>
+                  <th width="40%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="4">Per category</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>Accuracy</th>
+                  <th>Macro F1</th>
+                  <th>Sentiment</th>
+                  <th>Precision</th>
+                  <th>Recall</th>
+                  <th>F1</th>
+                </tr>
+                <tr>
+                  <td style="border-bottom: 1px solid;" rowspan="4">Augmented CNN model 1</td>
+                  <td style="border-bottom: 1px solid;" rowspan="4">Word embeddings<br>+Sentence embeddings</td>
+                  <td style="border-bottom: 0px solid;">0.79</td>
+                  <td style="border-bottom: 0px solid;">0.60</td>
+                  <td style="border-bottom: 0px solid;">Negative</td>
+                  <td style="border-bottom: 0px solid;">0.59</td>
+                  <td style="border-bottom: 0px solid;">0.31</td>
+                  <td style="border-bottom: 0px solid;">0.39</td>
+                </tr>
+                <tr>
+                  <td style="border-bottom: 0px solid;"></td>
+                  <td style="border-bottom: 0px solid;"></td>
+                  <td style="border-bottom: 0px solid;">Neutral</td>
+                  <td style="border-bottom: 0px solid;">0.32</td>
+                  <td style="border-bottom: 0px solid;">0.06</td>
+                  <td style="border-bottom: 0px solid;">0.10</td>
+                </tr>
+                <tr>
+                  <td style="border-bottom: 0px solid;"></td>
+                  <td style="border-bottom: 0px solid;"></td>
+                  <td style="border-bottom: 0px solid;">Weakly positive</td>
+                  <td style="border-bottom: 0px solid; color:blue;">0.80</td>
+                  <td style="border-bottom: 0px solid; color:blue">0.94</td>
+                  <td style="border-bottom: 0px solid;">0.86</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Strongly positive</td>
+                  <td>0.73</td>
+                  <td>0.65</td>
+                  <td>0.68</td>
+                </tr>
+                <tr>
+                  <td style="border-bottom: 1px solid;" rowspan="4">Augmented CNN model 2</td>
+                  <td style="border-bottom: 1px solid;" rowspan="4">Word embeddings<br>+Sentence embeddings<br>+Pairwise cosine similarity<br>+Sentiment scores</td>
+                  <td style="border-bottom: 0px solid;">0.79</td>
+                  <td style="border-bottom: 0px solid;">0.60</td>
+                  <td style="border-bottom: 0px solid;">Negative</td>
+                  <td style="border-bottom: 0px solid; color:brown">0.62</td>
+                  <td style="border-bottom: 0px solid; color:brown">0.53</td>
+                  <td style="border-bottom: 0px solid; color:brown">0.57</td>
+                </tr>
+                <tr>
+                  <td style="border-bottom: 0px solid;"></td>
+                  <td style="border-bottom: 0px solid;"></td>
+                  <td style="border-bottom: 0px solid;">Neutral</td>
+                  <td style="border-bottom: 0px solid; color:brown">0.38</td>
+                  <td style="border-bottom: 0px solid; color:brown">0.22</td>
+                  <td style="border-bottom: 0px solid; color:brown">0.26</td>
+                </tr>
+                <tr>
+                  <td style="border-bottom: 0px solid;"></td>
+                  <td style="border-bottom: 0px solid;"></td>
+                  <td style="border-bottom: 0px solid;">Weakly positive</td>
+                  <td style="border-bottom: 0px solid;">0.84</td>
+                  <td style="border-bottom: 0px solid;">0.91</td>
+                  <td style="border-bottom: 0px solid;">0.88</td>
+                </tr>
+                <tr>
+                  <td style="border-bottom: 1px solid;"></td>
+                  <td style="border-bottom: 1px solid;"></td>
+                  <td style="border-bottom: 1px solid;">Strongly positive</td>
+                  <td style="border-bottom: 1px solid; color:brown">0.74</td>
+                  <td style="border-bottom: 1px solid; color:brown">0.67</td>
+                  <td style="border-bottom: 1px solid; color:brown">0.70</td>
+                </tr>
+              </table>
+
+              Note:
+              - The model built from just word and sentence embeddings prferred the weakly postive cases
+              - But this condition was improved when all the features were included.
+              - This showed that the cosine similarity and sentiment scores captured some characteristics that the embeddings did not capture.
+              
+              ---
+              ## Limitations and future work
+              - Limited to the biomedical field
+              - Finish annotating the remaining 9,374 post-retraction citation contexts
+                <ul>
+                  <li>A great majority of post-retraction citations lacking acknowledgements of retractions were positive.</li>
+                  <li>84.28% (2,660/3,156)</li>
+                </ul>
+              - Model performance indicates room for improvement.
+                <ul>
+                  <li>Sentence embeddings provided informative perspectives that were different from word embeddings.</li>
+                  <li>Citation contexts with the same sentiment might have shared characteristics. (e.g., not adequate, not... as previously indicated)</li>
+                </ul>
+              ---
+              ## Thank you 
+
+              <table style="border-collapse:collapse">
+                <tr>
+                  <td colspan="2" style="border-bottom: 0px solid;">
+                    This research is conducted by -
+                  </td>
+                </tr>
+                <tr>
+                  <td width="30%" style="border-bottom: 0px solid;">
+                    <img src="tkh.jpg" width="180" height="180">
+                  </td>
+                  <td width="70%" style="vertical-align:middle; border-bottom: 0px solid">
+                    <b>Tzu-Kun Hsiao<br>Ph.D. Student in Information Sciences @UIUC<br></b>tkhsiao2@illinois.edu
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="border-bottom: 0px solid;">
+                    Special thanks to Dr. Jodi Schneider for the editoral feedback
+                  </td>
+                </tr>
+                <tr>
+                  <td width="30%" style="border-bottom: 0px solid;">
+                    <img src="js.jpeg" width="180" height="180">
+                  </td>
+                  <td width="70%" style="vertical-align:middle; border-bottom: 0px solid;">
+                    <b>Jodi Schneider<br>Associate Professor of Information Sciences @UIUC</b>
+                  </td>
+                </tr>
+              </table>
+
+              ---
+              <!--.slide:data-visibility="uncounted"-->
+              ## Nouns included in the Bag-of-Words features
+              - accordance, addition, agreement, analysis, author, concern, contrast, controversy, correlation, example, experiment, evidence, failure, finding, hypothesis, improvement, instance, limitation, literature, method, model, other, report, research, result, study, suspicion, work.
+
+              
+              
+              
+            </textarea>
+          </section>
+        </section>
+      </div>
+    </body>>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/dist/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/plugin/math/math.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        width: 960,
+        height: 700,
+        margin: 0.1,
+        minScale: 0.2,
+        maxScale: 2.0, 
+        center: false,
+        hash: true,
+        slideNumber: 'c/t',
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ],
+        markdown: {smartypants: true},
+
+      });
+    </script>
+</html>
