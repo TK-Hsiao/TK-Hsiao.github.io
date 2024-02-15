@@ -1,0 +1,9 @@
+matplotlib
+numpy
+PIL
+scipy
+pandas
+bqplot
+ipywidgets
+geopandas
+requests
