@@ -1,0 +1,1876 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+      <title>presentation</title>
+
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1/dist/reset.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1/dist/reveal.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.1/dist/theme/white.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/5.11.2/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://unpkg.com/reveal.js-copycode@1.0.1/plugin/copycode/copycode.css">
+
+      <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+
+      <style>
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+          text-transform: none;
+        }
+        .reveal ul {
+          display: block; margin-left: 0px;
+        }
+        .reveal table {
+          border-collapse: collapse;
+        }
+        .reveal table td{
+          padding: 0px 5px 0px 5px;
+        }
+        .reveal p{
+          margin: 0px;
+          padding: 0;
+        }
+      </style>
+      <style>
+        .ref{
+          font-size: 38%; 
+          padding-left: 1.5em; 
+          text-indent: -1.5em;
+          margin: 0;
+          padding: 0;
+        }
+      </style>
+
+    </head>
+    <body>
+        <div class="reveal">
+          <div class="slides">
+            <section data-markdown data-separator="---" data-separator-notes="^Note:" style="vertical-align:top;text-align:left;" data-transition="none">
+              <script type="text/template">
+                <br>
+
+                ### Semantic Citation: <br>Mentions of Knowledge in Citation Contexts
+                
+                <br>
+                <br>
+
+                <p style="font-size:25px">
+                  <b>Tzu-Kun Hsiao</b><br><br>
+                  Committee:<br>
+                  Associate Professor Vetle I. Torvik, School of Information Sciences, Chair<br>
+                  Associate Professor Jodi Schneider, School of Information Sciences<br>
+                  Associate Professor Halil Kilicoglu, School of Information Sciences<br>
+                  Assistant Professor Matthew Turk, School of Information Sciences & Astronomy
+                </p>
+
+                Note:
+                - Thank you for joining this event.
+                - Today, I am going to give a brief presentation about my dissertation proposal.
+
+                - This proposal addresses questions sourrounding citation contexts.
+
+              </script>
+            </section>
+            <section data-markdown data-separator="---" data-separator-notes="^Note:" style="vertical-align:top;text-align:left;font-size:75%;line-height:1.4;" data-transition="none">
+              <textarea data-template>
+                ### Outline
+
+                - Motivation 
+                - Accomplished work
+                - Proposed work
+                - Timeline
+
+                Note:
+                - For today's presentation, 
+                - I'm going to start with motivation, then introduce my research questions, for which I have two accomplished works and one proposed work.
+                - After that, I will talk about my timeline.
+
+                ---
+                ### Why should we study citation contexts?
+
+                - Citations are commonly regarded as intellectual linkages between research articles (Smith, 1981).<br>
+                <div class="r-stack">
+                  <img class="fragment fade-out" data-fragment-index="0" data-src="figs/citation.svg" height="350" width="500">
+                  <img class="fragment" data-fragment-index="1" data-src="figs/citation2.svg" height="350" width="500">
+                </div>
+                - A substantial number of citation studies were based on bibliographic records.
+                - Citations may have different meanings for their citing authors.
+                - Citation context analysis can help us understand citations better.
+
+                Note:
+                - So, why should we study citation contexts?
+                - When authors reference prior research, they describe, discuss, or critique the referenced work in their papers.
+                - That's why citations are commonly regarded as intellectual linkages between research articles
+                - However, a big chuck of citation studies are based on bibliographic records, meaning that they study citations by reference lists.
+                - There are some stories that can only be revealed by studying citation contexts
+                - Such as the reasons behind citations or authors' opinions on the cited work.
+
+                - known as citation purposes and citation sentiments.
+                - This approach does not consider that citations may have different meanings for their citing authors.
+                - For example, a paper could be cited for providing supporting evidence or because a part of it, such as a research method, was used in the citing paper.
+
+                ---
+                ### Citation context datasets
+
+                - A citation context dataset: a dataset containing sentences in academic articles with inline citations identified.
+                - A citation context dataset can be constructed from:
+                  - PDF files
+                    - Science Parse (Cohan et al., 2019), ParsCit (Jurgens et al., 2018), and GROBID (Khadka & Knoth, 2018; Lo et al., 2020).
+                    - Failure to expand citation ranges<br> (e.g., missing citation <font color="#A52A18">[2]</font> and <font color="#A52A18">[3]</font> in citations "<font color="#A52A18">[1-4]</font>")
+                  - LaTeX files and XML files
+                    - Parsers developed by the datasets' authors 
+                - Lack of clear documentation of parsers' performance
+                - Datasets may be used as-is in future research (Wu et al., 2022).
+                - Difficulties in updating or customizing the datasets
+
+                Note:
+                - One of the possible reasons that bibliographic records still play a dominant role in citation studies is that it is easy to collect high-quality data from bibliographic databases, but it's not easy to obtain a high-quality citation context dataset.
+                - By definition, a citation context dataset is a dataset containing sentences in academic articles with inline citations identified.
+                - There are a few exsiting citation context datasets.
+                - These datasets were constructed from the PDF version, LaTeX version, or XML version of articles.
+                - However, regardless of article file formats, the quality of a citation context dataset is inevitably dependent on its parsing pipeline.
+                - For datasets built from PDF files, most of them were produced by existing parsing toolkits, such as ParsCit and GROBID.
+                - These parsing toolkits have some common errors, for example, they may fail to recognize citations in a range of citations 
+                - Such as the example here. There are four citations, but a parsing toolkit may miss recognizing the two citations in the middle.
+                - In addition, the articles describing citation context datasets may be brief and lack details.
+                - For example, the authors might say they developed a parser that can identify inline citations expressed in a variety of ways, but they did not report how well their parsers could recognize the inline citations.
+                - It is important to have clear documentation on the parsing pipeline and a quality evaluation.
+                - Because researchers may use citation context datasets as they are, so quality of a citation context dataset may affect the quality of research using it. 
+                - Another thing is that, many of the parsing pipelines for producing the datasets are not available to the public.
+                - This causes difficulties for researchers to update the dataset or customize the dataset for their use.
+
+                - This happens in journals using a numbered referencing style.
+                - The document not only confirms the dataset's soundness but also informs potential users about its limitations.
+                - This could help reduce uncertainties in future research.
+
+                ---
+                ### Motivation
+
+                - Address the challenges of obtaining high-quality citation context data.
+                  - Produce a high-quality, large-scale dataset.
+                  - A clear documentation of the pipeline 
+                  - A quality evaluation
+                
+                <br>
+                
+                <ul class="fragment">
+                  <li>
+                    <b>RQ 1:</b> <br>What makes it difficult to produce a citation context dataset from the Journal Article Tag Suite (JATS) XML files created by a wide variety of content providers (e.g., publishers)?
+                  </li>
+                  <ul>
+                    <li>Why JATS?</li>
+                    <li>Nuances of JATS XML files</li>
+                  </ul>
+                </ul>
+                
+                Note:
+                - Considering citation contexts could change the way we study citations, in my dissertation, I would like to address the challenges of producing high-quality citation context data.
+                - that has clear documentation of the pipeline and a quality evaluation confirming my dataset's soundness.
+                - My first research question is -- 
+                - You may wonder why I chose JATS.
+                - JATS is an XML standard developed by the National Library of Medicine that aims to tag journal articles.
+                - JATS is the preferred style for tagging articles in PubMed Central, which account for a significant portion of biomedical literature.
+                - Also, JATS has been widely adopted by a variety of publishers, including Taylor & Francis and the Nature Publishing Group.
+                - In addition, parsing JATS XML files is a non-trivial task because, when NLM designed JATS, they wanted JATS flexible enough to capture structural and semantic components that could appear in any article.
+                - The flexibitiy of JATS brings nuances to JATS XML files, causing difficulties in developing a parser that can handle JATS XML files deposited over time by a diverse pool of publishers and authors.
+                                
+                - Becuase the design of JATS is non-enforcing. There are almost no required XML elements or attributes.
+
+                ---
+                ### Motivation
+
+                - Study how existing knowledge has been mentioned in scientific literature.
+                  - Problematic science
+                  - Diversity of citation contexts mentioning the same work
+
+                <br>
+                
+                <ul class="fragment">
+                  <li>
+                    <b>RQ 2:</b> <br>How can citation contexts contribute to the advancement of citation analysis?
+                  </li>
+                  <ul>
+                    <li>RQ 2a: Why do retracted articles get cited after their retractions?</li>
+                    <li>RQ 2b: How diverse are the citation contexts when an article receives multiple citations?</li>
+                  </ul>
+                </ul>
+
+                Note:
+                - In this dissertation, I also would like to show how citation context analysis can tell stories about the dissemination of knowledge that cannot be told by just looking at reference lists.
+                - Especially, I focused on two research questions.
+                - The first research question looks at the dissemination of problematic science, as evidenced by post-retraction citations.
+                - Emperical studies have reproted that retraction does not stop citations, but it is unclear why retracted papers still receive citations after being retracted.
+                - The second research question addresses the problem that traditional citation analysis treats citation counts as evidence of knowledge diffusion, but fails to consider the context in which citations are made.
+                - In particular, I would like to investigate the diversity of knowledge contents, such as methods and findings in an article, that have been cited in the literature.
+
+                ---
+                ### RQ 1 - Accomplished work: OpCitance
+
+                <br>
+                <p style="font-size: 90%; padding-left: 1.5em; text-indent: -1.5em;">
+                  Hsiao, T.-K., & Torvik, V. I. (2023). OpCitance: Citation contexts identified from the PubMed Central Open Access articles. <em>Scientific Data, 10</em>, 243. https://doi.org/10.1038/s41597-023-02134-x
+                </p><br>
+
+
+                - Built from PubMed Central (PMC) open access (OA) articles
+                - Address the challenges of handling nuances in JATS XML files.
+                  - The pipeline is available to the public.
+                - A quality evaluation confirms the dataset's soundness.
+
+                Note:
+                - To address the needs of obtaining high-quality citation context data
+                - I developed a pipeline that can handle nuances in JATS XML files and made my pipeline available to the public.
+                - So users can use my pipeline to update the dataset or customize the pipeline according to their needs.
+                - The produced citation context dataset is called OpCitance.
+                - This dataset also comes with a quality evaluation confirming the dataset’s soundness.
+
+                ---
+                ### OpCitance: Challenges addressed
+
+                <table style="width:100%; height: 100%; border-collapse:collapse;text-align:left; vertical-align: top;">
+                  <tr>
+                    <div class="r-stack" >
+                      <td style="width:100%;border-bottom: 0px solid;vertical-align:top;line-height:1.5;font-size:25px;">
+                        <ul>
+                          <li class="fragment fade-in-then-semi-out" data-fragment-index="0">
+                            Nested structure and interchangeable use of references' IDs
+                          </li>
+                          <li class="fragment fade-in-then-semi-out" data-fragment-index="1">
+                            The implicitly mentioned citations 
+                          </li>
+                          <li class="fragment fade-in-then-semi-out" data-fragment-index="2">
+                            Customized code for sentence tokenization
+                          </li> 
+                        </ul>
+                      </td>
+                    </div>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: top;">
+                      <div class="r-stack" >
+                        <figure class="fragment fade-in-then-out" data-fragment-index="0">
+                          <figcaption style="text-align: left;"><em>PMCID:5952554</em></figcaption>
+                          <img data-src="figs/nested-5.jpg" height="450" width="450">
+                          <img data-src="figs/nested-6.png" height="450" width="450">
+                        </figure>
+                        <figure class="fragment fade-in-then-out" data-fragment-index="1">
+                          <figcaption style="text-align: left;"><em>PMCID:4067518</em></figcaption>
+                          <img data-src="figs/implicit.png" height="100" width="600">
+                          <figcaption style="text-align: left;">
+                            The “hyphen” could be:
+                            <li style="text-indent: 1em;">a hyphen</li>
+                            <li style="text-indent: 1em;">an en dash (Unicode character U + 2013)</li>
+                            <li style="text-indent: 1em;">a minus sign (Unicode character U+ 2212)</li>
+                            <li style="text-indent: 1em;">two hyphens/en dashes/minus signs.</li>
+                          </figcaption>
+                        </figure>
+                        <figure class="fragment" data-fragment-index="2">
+                          <figcaption style="font-size: x-large;">
+                            <p>NLTK can break a sentence containing abbreviations into fragmnets:</p>
+                            <blockquote style="font-size: large;">
+                              The clinical presentation of scar endometriosis, <font color="#A52A18">i.e.</font>
+                            </blockquote>
+                            <blockquote style="font-size: large;">
+                              , tender swellings, mimics other dermatological and/or surgical conditions and delays the diagnosis.
+                            </blockquote>
+                            <p>After correction:</p>
+                            <blockquote style="font-size: large;">
+                              The clinical presentation of scar endometriosis, i.e., tender swellings, mimics other dermatological and/or surgical conditions and delays the diagnosis.
+                            </blockquote>
+                          </figcaption>
+                        </figure>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                Note:
+                - As mentioned earlier, there are nuances in the JATS XML files.
+                - First, sometimes references are organized using a nested structure.
+                - A nested structure means a reference could actually contain several references.
+                - As you can see in the example on the left hand side, there are four references nested under reference one.
+                - There's an ID representing four references, but each reference has its own ID as well.
+                - This could cause problems in identifying the inline citations because publishers may tag each reference separately or as a group of references.
+                - My parser keeps track of this kind of structure and can identify whether an inline citation points to one reference or a group of references.
+                - Second, my parser can identify inline citations that are not tagged in the XML files.
+                - For example, here, you can see there are three citations, but only citation 9 and citation 11 were tagged.
+                - My parser can identify citation 10, which is not tagged in the XML file.
+                - I also developed code for improving the performance of sentence tokenization.
+                - I used NLTK for parsing a paragraph into sentences.
+                - I found that NLTK frequently broke sentences containing abbreviations into fragments because it incorrectly identified dots in abbreviations as periods.
+                - To deal with this condition, I develop regular expressions for identifying abbreviations, remove the dots in abbreviations before sentence tokenization, and put the dots back afterwards.
+                - This prevents NLTK from breaking a sentence into fragments.
+
+                - Different expressions of a dash were unified.
+
+                ---
+                ### What's in OpCitance?
+
+                - All sentences in 2,049,871 articles
+                - 137 million inline citations are annotated.
+                - Locations of citation contexts are provided.
+                - Order of the sentences are preserved.
+                  - Citation context window size can be customized.
+                
+                <table style="width:100%;border-collapse:collapse;text-align:left;">
+                  <tr>
+                    <td style="width:100%;border-bottom: 0px solid">
+                      <div class="r-stack">
+                        <img class="fragment fade-out" data-fragment-index="0" data-src="figs/data_snippet.png" height="400" width="1000"><br>
+                        <img class="fragment current-visible" data-fragment-index="0" data-src="figs/data_snippet-2.png" height="400" width="1000">
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                Note:
+                - OpCitance contains all sentences in about 2 million articles, with 137 million inline citations annotated.
+                - Also, locations of citation contexts are provided.
+                - You can find whether a citation context appears in an abstract, body text, tables, figure, and so on.
+                - I also preserved the order of the sentences.
+                - This allows users to easily customize citation context window sizes according to their needs.
+
+                ---
+                ### OpCitance: Quality evaluation
+
+                - Inline citation identification rate: 99.49%
+                - Factors that may be related to unidentified inline citations<br><br>
+                
+                <br>
+                <table style="width:100%; height: 100%; border-collapse:collapse;text-align:left;">
+                  <tr>
+                    <td style="width:30%;border-bottom: 0px solid;vertical-align:top;line-height:1.5;font-size:25px;">
+                      <ul>
+                        <li class="fragment fade-in-then-semi-out" data-fragment-index="0">
+                          Year of publication
+                        </li>
+                        <li class="fragment fade-in-then-semi-out" data-fragment-index="1">
+                          Deposit source
+                        </li>
+                        <li class="fragment" data-fragment-index="2">
+                          Journal size
+                        </li>
+                      </ul>
+                    </td>
+                    <td style="width:70%;border-bottom: 0px solid; padding:0px;vertical-align: top; text-align: top;">
+                      <div class="r-stack" style="vertical-align: top">
+                        <img class="fragment current-visible" data-fragment-index="0" data-src="figs/py2.png" height="350" width="700"><br>
+                        <table align="left" class="fragment current-visible" data-fragment-index="1" style="text-align:left;font-size: 60%;">
+                          <tr>
+                            <td style="width:23%; border-top: 1px solid;">Deposit Source</td>
+                            <td style="width:10%; border-top: 1px solid black; text-align: right;"># Articles</td>
+                            <td style="width:17%; border-top: 1px solid black; text-align: right;"># References</td>
+                            <td colspan="2" style="width:50%; border-top: 1px solid black; text-align: center;"># References without inline citations (%)</td>
+                          </tr>
+                          <tr>
+                            <td style="border-top: 1px solid;">Full participation</td>
+                            <td style="border-top: 1px solid; text-align: right;">1,830,722</td>
+                            <td style="border-top: 1px solid; text-align: right;">76,275,089</td>
+                            <td style="border-top: 1px solid; text-align: right;">325,347</td>
+                            <td style="border-top: 1px solid;">(0.43)</td>
+                          </tr>
+                          <tr>
+                            <td style="width:20%; border-bottom: 0px solid;">Selective deposit</td>
+                            <td style="width:10%; border-bottom: 0px solid; text-align: right;">138,356</td>
+                            <td style="width:15%; border-bottom: 0px solid; text-align: right;">6,763,865</td>
+                            <td style="width:25%; border-bottom: 0px solid; text-align: right;">87,587</td>
+                            <td style="width:25%; border-bottom: 0px solid;">(1.29)</td>
+                          </tr>
+                          <tr>
+                            <td style="width:20%; border-bottom: 0px solid;">NIH portfolio</td>
+                            <td style="width:10%; border-bottom: 0px solid; text-align: right;">58,357</td>
+                            <td style="width:15%; border-bottom: 0px solid; text-align: right;">2,395,980</td>
+                            <td style="width:25%; border-bottom: 0px solid; text-align: right;">17,018</td>
+                            <td style="width:25%; border-bottom: 0px solid;">(0.71)</td>
+                          </tr>
+                          <tr>
+                            <td style="width:20%; border-bottom: 1px solid black;">Author manuscript</td>
+                            <td style="width:10%; border-bottom: 1px solid black; text-align: right;">22,436</td>
+                            <td style="width:15%; border-bottom: 1px solid black; text-align: right;">1,038,412</td>
+                            <td style="width:25%; border-bottom: 1px solid black; text-align: right;">7,519</td>
+                            <td style="width:25%; border-bottom: 1px solid black;">(0.72)</td>
+                          </tr>
+                          <tr>
+                            <td style="width:20%; border-bottom: 1px solid black;">Total</td>
+                            <td style="width:10%; border-bottom: 1px solid black; text-align: right;">2,049,871</td>
+                            <td style="width:15%; border-bottom: 1px solid black; text-align: right;">86,473,346</td>
+                            <td style="width:25%; border-bottom: 1px solid black; text-align: right;">437,471</td>
+                            <td style="width:25%; border-bottom: 1px solid black;">(0.51)</td>
+                          </tr>
+                        </table>
+                        <img class="fragment" data-fragment-index="2" data-src="figs/jrn_size_regplot.png" width="800" height="350">
+                      </div>                      
+                    </td>
+                  </tr>
+                </table>
+
+                Note:
+                - I also analyze factors that may be related to the unidentified inline citations.
+                - I discovered that the unidentified rates are high in old articles, especially the ones published before 1985.
+                - But these articles only account for a tiny number of articles in my dataset.
+                - I also found that XML files from journals that deposit all their articles to PMC have higher identification rates of inline citations, and they are the major sources of the XML files in PMCOA.
+                - In addition, journals that have higher numbers of articles in PMCOA also have lower unidentification rates.
+
+                - The references in papers published before 1985 accounts for less than 0.01% of all the references (0.003%, 2,912 references)
+
+                ---
+                ### RQ 2a: Citations to retracted articles
+               
+                <br><div style="text-indent: -1em;">RQ 2a: Why do retracted articles get cited after their retractions?</div><br>
+
+                - Accomplished work
+                <div style="font-size: 90%; padding-left: 1.5em; text-indent: -1.5em;">
+                  Hsiao, T.-K., & Schneider, J. (2021). Continued use of retracted papers: Temporal trends in citations and (lack of) awareness of retractions shown in citation contexts in biomedicine. <em>Quantitative Science Studies, 2</em>(4), 1144–1169. https://doi.org/10.1162/qss_a_00155
+                </div>
+                <div style="font-size: 90%; padding-left: 1.5em; text-indent: -1.5em;">
+                  Hsiao, T.-K. (2023). Appropriateness of citing retracted articles in biomedicine: Sentiments expressed in citations without acknowledgement of retraction. <em>Proceedings of ISSI 2023 – the 19th International Conference of the International Society for Scientometrics and Informetrics, 2</em>, 181–187. https://doi.org/10.5281/zenodo.8370893
+                </div><br>
+
+                Note:
+                - To answer why retractation does not stop citations, I looked at citation contexts citing retracted papers.
+                - This part of study is based on two of my published papers.
+
+                ---
+                ### RQ 2a: Citations to retracted articles
+                
+                - Retraction officially flags problematic science.
+                - Retraction does not stop the diffusion of the retracted article. <small>(Bar-Ilan & Halevi, 2017; Bolland et al., 2021; Candal-Pedreira et al., 2020; Dal-Ré & Ayuso, 2020; Mott et al., 2019; Pfeifer & Snodgrass, 1990; Theis-Mahon & Bakker, 2020; van der Vet & Nijveen, 2016)</small>
+                  - Previous studies were mostly focused on citation counts or on a particular field.
+                - The question of why retracted articles continue to be cited after their retractions remains underexplored. 
+                - The current work:
+                  - A database-wide analysis of citation contexts
+                  - The purposes of intentionally citing retracted articles
+                  - Sentiments expressed in post-retraction citation contexts lacking acknowledgement
+
+                Note:
+                - Emperical studies have found that retraction does not stop the diffusion of the retracted article.
+                - In my work, I looked at the reasons behind the intentional post-retraction citations, meaning the authors knew that the cited articles were retracted but still decided to cite them.
+                - And the sentiments expressed in post-retraction citation contexts in which authors did not inform the readers about the retraction.
+                
+                ---
+                ### RQ 2a: Data
+
+                - Retracted articles: <em>"retracted publication" [PT]</em>
+                - 7,813 retracted articles
+                - 48,747 citation contexts (613 excluded)
+                - Obtain their retraction years by PubMed’s <em>retraction in</em> links<br>(7,766/7,813; 99.4%)
+                  - Pre-retraction: 28,439 citation contexts
+                  - In retraction year: 6,412 citation contexts
+                  - Post-retraction: 13,252 citation contexts
+                  - Missing retraction year: 31 citation contexts
+
+                Note:
+                - I collected retracted articles indexed in PubMed by searching articles with "retracted publication" in their publication types.
+                - Then I mapped the PMIDs of the retracted articles to the PMIDs of the citations in my dataset.
+                - I also used the retraction notices to identify the retraction years, so that I could know whether the citations happened before or after the article was retracted.
+                
+                - 612 from retraction notices; 1 citation context had the same PMID for its citing article and the cited retracted article.
+                                
+                ---
+                ### RQ 2a: Method
+
+                - Identifying intentional post-retraction citations<br>
+                <table align="left" style="text-align:left;font-size: medium;">
+                  <tr>
+                    <td style="width:5%; border-top: 1px solid;">Priority</td>
+                    <td style="width:35%; border-top: 1px solid black;">Rule</td>
+                    <td style="width:20%; border-top: 1px solid black;"># citation contexts identified</td>
+                    <td style="width:20%; border-top: 1px solid black;"># citation contexts acknowledging the retraction</td>
+                    <td style="width:20%; border-top: 1px solid black;"># false positives</td>
+                  </tr>
+                  <tr>
+                    <td style="width:5%; border-bottom: 0px solid;">1</td>
+                    <td style="width:35%; border-bottom: 0px solid;">At least one of the cue words (retract*, withdr*, and error) appears in the citation context.</td>
+                    <td style="width:20%; border-bottom: 0px solid;">243</td>
+                    <td style="width:20%; border-bottom: 0px solid;">169</td>
+                    <td style="width:20%; border-bottom: 0px solid;">74</td>
+                  </tr>
+                  <tr>
+                    <td style="width:5%; border-bottom: 0px solid;">2</td>
+                    <td style="width:35%; border-bottom: 0px solid;">At least one of the cue words (retract*, withdr*) appears in the acknowledgment window.</td>
+                    <td style="width:20%; border-bottom: 0px solid;">309</td>
+                    <td style="width:20%; border-bottom: 0px solid;">283</td>
+                    <td style="width:20%; border-bottom: 0px solid;">26</td>
+                  </tr>
+                  <tr>
+                    <td style="width:5%; border-bottom: 1px solid;">3</td>
+                    <td style="width:35%; border-bottom: 1px solid;">Retraction notice is cited together with the retracted article in the citing article’s full-text.</td>
+                    <td style="width:20%; border-bottom: 1px solid;">159</td>
+                    <td style="width:20%; border-bottom: 1px solid;">159</td>
+                    <td style="width:20%; border-bottom: 1px solid;">0</td>
+                  </tr>
+                  <tr>
+                    <td style="width:5%; border-bottom: 1px solid black;">Total</td>
+                    <td style="width:35%; border-bottom: 1px solid black;">-</td>
+                    <td style="width:20%; border-bottom: 1px solid black;">711</td>
+                    <td style="width:20%; border-bottom: 1px solid black;">611</td>
+                    <td style="width:20%; border-bottom: 1px solid black;">100</td>
+                  </tr>
+                </table>
+                <ul>
+                  <li><em>retract*</em> in <em>neurite retraction</em>; <em>withdr*</em> in <em>withdrawal symptoms</em></li>
+                  <li>+ 111 implicit intentional post-retraction citation contexts</li>
+                </ul>
+                - Annotating citation purposes
+                  - A classification scheme consisting of 11 categories
+                - Annotating citation sentiments
+                  - 25% of post-retraction citation contexts without acknowledgements
+                  - <em>strongly positive</em>, <em>weakly positive</em>, <em>neutral</em>, and <em>negative</em>.
+                
+                Note:
+                - Three rules were used to identify intentional post-retraction citations.
+                - The first two rules identified intentional post-retraction citations by using cue words such as retract and withdraw.
+                - The third rule is to search for citation contexts in which the retraction notice is cited together with the retracted article.
+                - To understand why authors knew the articles were retrected but still cited them, I developed a scheme that has 11 categories of citation purposes.
+                - As for understanding the opinions of citing authors toward the cited retracted paper, I annotated the citation sentiments into four categories.
+                - Here, I focused on whether retracted articles were cited as legitimate work or not.
+                - So the positive sentiment referred to the condition that the retracted articles were cited as valid work.
+                - And the negative citations were the ones in which the citing authors disputed the retracted work or raised concerns about the retracted work.
+                                
+                
+                ---
+                ### RQ 2a: A model for automatically identifying sentiments
+
+                - Customized Bag-of-Words features <!-- .element: style="font-size: 95%"-->
+                  <ul>
+                    <li>
+                      Sentiments are often hinted at in verbs, adjectives, and adverbs.
+                      <div style="font-size: 70%; padding: 8px;">The original report of an alphaproteobacterial Sphingomonas-related GAO (Retracted PMID: 15256569) <u style="color:brown">was later shown to be incorrect</u> and the FISH probes were shown to be binding to members of the Defluviicoccus cluster 1.</div>
+                    </li>
+                    <li>
+                      Part-of-Speech tags
+                      <ul>
+                        <li style="font-size: 90%;">
+                          Exclude lemmas tagged as proper nouns, numbers, punctuation, and symbols.
+                        </li>
+                        <li style="font-size: 90%;">
+                          Only a selected set of nouns were retained.
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                - Word and sentence embeddings <!-- .element: style="font-size: 95%"-->
+                  <ul>
+                    <li>
+                      BioWordVec (Zhang et al., 2019) and BioSentVec (Chen et al., 2019)
+                    </li>
+                  </ul>
+                - Sentiment scores <!-- .element: style="font-size: 95%"-->
+                  <ul>
+                    <li style="font-size: 90%;">
+                      $ SentiSentence = \sum_{i=1}^{n} \frac{SentiTerm_i}{D}$ <br>where $SentiTerm_i$ = 1 for a positive term; $SentiTerm_i$ = -1 for a negative term; $D$ is the distance between the term and the citation marker.
+                    </li>
+                  </ul>
+                - Pairwise cosine similarity <!-- .element: style="font-size: 95%"-->
+
+                Note:
+                - I also performed experiments on developing a model for automatically identifying sentiments.
+                - This model may benefit future studies on the sentiments of citations to retracted articles at scale.
+                - To build the model, I tried BOW features, word embeddings, sentence embeddings, sentiment scores, and pairwise cosine similarity between citation contexts
+                              
+                ---
+                ### RQ 2a: Major findings
+
+                - Only <font color="#A52A18">5.4%</font> (722/13,252) are the intentional post-retraction citations.<br><br>
+                - The findings reported in the retracted articles were still regarded as parts of the development of a particular research topic.
+                <div style="font-size: x-large; padding-left: 1.5em; text-indent: -1.5em; padding-top: 10px; line-height: 1.3;">
+                  An example of a negative mention (from PMID: 17474991):<br>
+                  Another trial of a multivitamin and multimineral supplement in healthy elderly subjects reported beneficial effects after one year in six of seven tests [Retraction PMID: 11527656], though these findings have recently been retracted in the light of concerns about the veracity of the data and possible conflicting commercial interest [Retraction notice PMID: 11527656].
+                </div>
+                <div style="font-size: x-large; padding-left: 1.5em; text-indent: -1.5em; padding-top: 10px; line-height: 1.3;">
+                  An example of a non-negative mention (from PMID: 26029167):<br>
+                  One of the first biomarkers proposed was serum IGF-I. Despite the retraction of one study suggesting that elevated pre-treatment free IGF-I levels were associated with NSCLC patient response to figitumumab ([Retraction PMID: 21102589]), additional evidence supporting these findings has been published.
+                </div>
+
+                Note:
+                - An overwhelming majority of the post-retraction citation contexts do not show awareness of the retraction when citing retracted articles.
+                - Reported findings were once regarded as landmarks or important breakthroughs
+
+                ---
+                ### RQ 2a: Major findings
+                - Sometimes citations to retractions were inevitable.
+                  - Articles about problematic science
+                  - Systematic reviews<br>
+                <img data-src="figs/retract_pt.jpg" height="50%" width="75%">
+
+                Note:
+                - For instance, in systematic reviews and meta-analysis, the authors have to report the reasons why some articles are not included in the review.
+                - This is known as the exclusion rationale.
+                - And retracted articles were cited in the exclusion rationales to address that these articles were not included in the reviews because they were retracted.
+
+                ---
+                ### RQ 2a: Major findings
+
+                - Retracted articles were frequently cited as legitimate work without informing the readers about the retraction.<!-- .element: style="font-size: 90%;"-->
+                  <table align="left" style="font-size: 55%;">
+                    <tr>
+                      <td style="width:20%; border-top: 1px solid black;">Sentiment</td>
+                      <td style="width:40%; border-top: 1px solid black; text-align: right;"># Citation contexts</td>
+                      <td style="width:40%; border-top: 1px solid black; text-align: left;">(%)</td>
+                    </tr>
+                    <tr>
+                      <td style="width:20%; border-bottom: 0px solid;">Weakly positive</td>
+                      <td style="width:40%; border-bottom: 0px solid; text-align: right;">2,078</td>
+                      <td style="width:40%; border-bottom: 0px solid; text-align: left;">(65.84)</td>
+                    </tr>
+                    <tr>
+                      <td style="width:20%; border-bottom: 0px solid;">Strongly positive</td>
+                      <td style="width:40%; border-bottom: 0px solid; text-align: right;">582</td>
+                      <td style="width:40%; border-bottom: 0px solid; text-align: left;">(18.44)</td>
+                    </tr>
+                    <tr>
+                      <td style="width:20%; border-bottom: 0px solid; ">Neutral</td>
+                      <td style="width:40%; border-bottom: 0px solid; text-align: right;">207</td>
+                      <td style="width:40%; border-bottom: 0px solid; text-align: left;">(6.56)</td>
+                    </tr>
+                    <tr>
+                      <td style="width:20%;">Negative</td>
+                      <td style="width:40%; text-align: right;">289</td>
+                      <td style="width:40%; text-align: left;">(9.16)</td>
+                    </tr>
+                    <tr>
+                      <td style="width:20%; border-bottom: 1px solid black;">Total</td>
+                      <td style="width:40%; border-bottom: 1px solid black; text-align: right;">3,156</td>
+                      <td style="width:40%; border-bottom: 1px solid black; text-align: left;">(100)</td>
+                    </tr>
+                  </table><br><br><br><br>
+                
+                - Deep learning models outperformed traditional machine learning models. <!-- .element: style="font-size: 90%;"-->
+                  <table style="font-size: 55%; line-height:1.2; margin-left:10px; border-collapse:collapse">
+                    <tr>
+                      <td width="17%" style="border-bottom: 0px solid; border-top: 1px solid;">Model</td>
+                      <td width="23%" style="border-bottom: 0px solid; border-top: 1px solid;">Features</td>
+                      <td width="15%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="2">CNN</td>
+                      <td width="15%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="2">BiLSTM</td>
+                      <td width="15%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="2">SVM</td>
+                      <td width="15%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="2">Logistic Regression</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>Accuracy</td>
+                      <td>F1</td>
+                      <td>Accuracy</td>
+                      <td>F1</td>
+                      <td>Accuracy</td>
+                      <td>F1</td>
+                      <td>Accuracy</td>
+                      <td>F1</td>
+                    </tr>
+                    <tr>
+                      <td>Base model</td>
+                      <td>Word embeddings/BOW*</td>
+                      <td>0.77</td>
+                      <td>0.51</td>
+                      <td>0.78</td>
+                      <td>0.53</td>
+                      <td>0.54</td>
+                      <td>0.43</td>
+                      <td>0.56</td>
+                      <td>0.45</td>
+                    </tr>
+                    <tr>
+                      <td>Augmented model 1</td>
+                      <td>Word embeddings/BOW*<br>+Sentence embeddings</td>
+                      <td><span style="color:brown">0.79</span></td>
+                      <td><span style="color:brown">0.60</span></td>
+                      <td><span style="color:blue">0.78</span></td>
+                      <td><span style="color:blue">0.59</span></td>
+                      <td>0.65</td>
+                      <td>0.54</td>
+                      <td>0.62</td>
+                      <td>0.52</td>
+                    </tr>
+                    <tr>
+                      <td style="border-bottom: 1px solid;">Augmented model 2</td>
+                      <td style="border-bottom: 1px solid;">Word embeddings/BOW*<br>+Sentence embeddings<br>+Pairwise cosine similarity<br>+Sentiment scores</td>
+                      <td style="border-bottom: 1px solid;"><span style="color:brown">0.79</span></td>
+                      <td style="border-bottom: 1px solid;"><span style="color:brown">0.60</span></td>
+                      <td style="border-bottom: 1px solid;"><span style="color:blue">0.78</span></td>
+                      <td style="border-bottom: 1px solid;"><span style="color:blue">0.59</span></td>
+                      <td style="border-bottom: 1px solid;">0.65</td>
+                      <td style="border-bottom: 1px solid;">0.54</td>
+                      <td style="border-bottom: 1px solid;">0.62</td>
+                      <td style="border-bottom: 1px solid;">0.53</td>
+                    </tr>
+                    <tr>
+                      <td colspan="10" style="text-align: right;">*Word embeddings were used in the CNN and BiLSTM models; BOW was used in the SVM and Logistic Regression models.</td>
+                    </tr>
+                  </table>
+                
+                Note:
+                - I also found that retracted articles were frequently cited as legitimate work without informing the readers about the retraction.
+                - About 85% of the annotated citations metioned retracted articles as valid work.
+                - Although I could not know whether the citing authors knew the cited articles were retracted or not, the result tells us that many of the findings in retracted articles could be disseminated to readers without warning.
+                - For the classification experiments, I tried two deep learning models and two traditional machine learning models.
+                - I found that deep learning models outperformed traditional machine learning models, implying that deep learning models may be a better choice for this kind of task.
+
+                ---
+                ### RQ 2b - Proposed work: Diversity of citation contexts
+
+                <em>"For citations, the cited document is the ’object’ and the ’idea’ is expressed in the text which cites it."</em>
+                <p style="text-align: right;">- Henry G. Small (1978)</p>
+                
+                <div class="r-stack">
+                  <p class="fragment" data-fragment-index="1">
+                    When an article receives multiple citations, how diverse are the citation contexts?
+                  </p>
+
+                  <table style="width:100%; height: 100%; border-collapse:collapse;text-align:left;">
+                    <tr class="fragment fade-out" data-fragment-index="0">
+                      <td style="width:40%;border-bottom: 0px solid;text-align:left; vertical-align:top;line-height:1.2;font-size:25px;">
+                        <ul>
+                          <li style="text-align: left;">
+                            A paper may contain multiple knowledge contents<br>(concepts, methods, or findings)<br><br><br>
+                          </li>
+                          <li style="text-align: left;">
+                            Authors may reuse text.<div style="font-size: large; line-height: 1.2; padding-bottom: 10px;">(Citron & Ginsparg, 2015; Liu & Chen, 2021)</div>
+                          </li>
+                          <li style="text-align: left;">
+                            Most of the citations mentioned the same knowledge content.<div style="font-size: large; line-height: 1.2; padding-bottom: 10px;">(Leng, 2021; Shkurko, 2018; Small, 1978)</div>
+                          </li> 
+                          <li style="text-align: left;">
+                            Focused on highly cited papers
+                          </li>
+                        </ul>
+                      </td>
+                      <td style="width:60%;border-bottom: 0px solid;text-align:left; vertical-align:top;line-height:1.5;font-size:25px;">
+                        <img style="float:left" data-src="figs/diversity4.svg" height="350" width="600">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                
+
+                Note:
+                - For my last research question, I would like to explore when an article is cited, does it get cited for the same thing or different things.
+                - This idea is inspired by Henry Small's paper: Cited document as concept symbols.
+                - In this paper, Small mentioned that "For citations, the cited document is the ’object’ and the ’idea’ is expressed in the text which cites it."
+                - This means citation contexts contain descriptions of pieces of knowledge in the cited articles.
+                - These pieces of knowledge can be concepts, methods, or findings in the cited articles. I called them knowledge contents.
+                - An article could contain many knowledge contents, but not every knowledge content would be cited in the literature, and some knowledge contents could be cited more frequently than others.
+                - In the studies that looked at the diversity of knowledge contents in an article that received multiple citations, they found that when an article received multiple citations, most of the citations mentioned the same knowledge content.
+                - In addition, studies have found that authors may reuse text, either recycling their own text or borrowing text from others.
+                - This means that citation contexts mentioning the same article could have high text similarity.
+                - So, in this part of the research, I would like to explore this research question:
+
+                - Tradtional citation analysis treats citation counts as the use of the cited article.
+                - And does not examine how the knowledge in the cited article has been used in the literature.
+
+                ---
+                ### RQ 2b: Measuring diversity
+
+                - Sentence embeddings
+                  - A PubMedBERT model released by Deka et al. (2022) 
+                  - BioSimCSE model (Kanakarajan et al., 2022)
+                
+                <br>
+                
+                - Text diversity metric proposed by Lai et al. (2020)<br>
+                  <div style="width:0; float:left;">
+                    <p style="font-size: x-large; text-align: left;"> $$ \text{Embedding Diversity}= \sqrt[H]{\prod_{i=1}^{H}\sigma_i} $$ </p>
+                    <ul>
+                      <li style="margin-top:0%; margin-bottom: 0%;">
+                        <p style="font-size: x-large; text-align: left; line-height: 0; padding-top: 0%; padding-bottom: 0;"> $$ \sigma_i \text{ is the standard deviation along a dimension} $$ </p>
+                      </li>
+                      <li style="margin-top:0%; margin-bottom: 0%;">
+                        <p style="font-size: x-large; text-align: left; line-height: 0; padding-top: 0%; padding-bottom: 0;"> $$ {H}\text{ is the number of dimensions of the sentence embedding.} $$ </p>
+                      </li>
+                    </ul>
+                  </div>
+
+                Note:
+                - Different from previous studies that used content analysis to identify knowledge contents in citation contexts, I plan to examine the diversity of knowledge contents through the text diversity of citation contexts.
+                - This is because content analysis is labor-intensive.
+                - It is hard for a person to annotate a large number of citation contexts.
+                - My assumption is that when the knowledge contents in a set of citation contexts mentioning the same article are diverse, the text diversity should be higher.
+
+                - Measures diversity through the dispersion of a given set of embeddings
+                - The the geometric mean of the standard deviation of embedding vectors along each dimension.
+
+                ---
+                ### RQ 2b: Subjects of study
+                
+                - Endometriosis articles
+                  - Classically defined as endometrial-like tissues that are present outside the uterus (Amro et al., 2022; Taylor et al., 2021).
+                  - A research area with ongoing debates and advancements. 
+                    - Used to be considered to arise from retrograde menstruation carrying implants of endometrial tissue outside of the uterus.
+                    - Recent studies have proposed that genetic-epigenetic incidents can better explain the pathophysiology of endometriosis.
+                  - The shift in the understanding of endometriosis may be reflected in the citation contexts that an article may be mentioned in different ways.
+                
+                Note:
+                - In this part of the research, I chose endometriosis articles as the subjects of study.
+                - This is because endometriosis is a research area with ongoing debates and advancements.
+                - Hence, different knowledge contents might be cited to support different ideas.
+
+                - Casued by menstruation carrying endometrial tissue outside of the uterus
+
+                ---
+                ### RQ 2b: Data
+                - PubMed articles having "endometriosis" in their Medical Subject Headings (MeSH)
+                - 9,697 of the 20,369 articles were cited in OpCitance
+                <img style="float:left" data-src="figs/data_collection.png" height="380" width="650">
+
+                Note:
+                - To collect the data, I used an in-house dataset containing articles' PMIDs and their MeSH terms.
+                - I first searched for articles having endometriosis in MeSH.
+                - After that, I mapped these PMIDs to the PMIDs in my dataset and excluded citation contexts in tables and figures.
+                - This is because the models I used for obtaining the embeddings were designed for processing sentences.
+                - Since previous research has reported that authors may reuse text, I also mapped the PMIDs with the Authority-2018 dataset, which is a dataset containing disambiguated author instances.
+                - This is for collecting the citers and citees of the citation contexts. 
+                - After this step, I searched for the endometriosis articles that have been cited more than once.
+
+                ---
+                ### RQ 2b: Preliminary results
+
+                <table style="font-size: 20px;">
+                  <tr>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px;">
+                      Diversity score
+                    </td>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px;">
+                      PMID
+                    </td>
+                    <td style="width: 70%; padding: 0px 1px 0px 5px;">
+                      Citation context
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      0.01
+                    </td>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      23762683
+                    </td>
+                    <td style="width: 70%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      The incidence of concomitant pelvic endometriosis with scar endometriosis has been reported to be from 14.3% to 26% [cited PMID: 1685456].
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px;">
+                    </td>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px;">
+                      27857904
+                    </td>
+                    <td style="width: 70%; padding: 0px 1px 0px 5px;">
+                      The incidence of concomitant pelvic endometriosis with scar endometriosis has been reported to be ranging from 14.2% to 26% [cited PMID: 1685456].
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      0.29
+                    </td>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      24927773
+                    </td>
+                    <td style="width: 70%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      In fact, immune deficits fulfilling most of the basic criteria for autoimmune disease have been described in endometriosis, including polyclonal B-cell activation, abnormalities in T- and B- cell function, tissue damage, and multi-organ involvement [cited PMID: 20797713 and another article].
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                    </td>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      26439741
+                    </td>
+                    <td style="width: 70%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      Given the autoimmune characteristics of endometriosis, endometriosis and nickel allergy may share common features [cited PMID: 20797713].
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                    </td>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      29234882
+                    </td>
+                    <td style="width: 70%; padding: 0px 1px 0px 5px; border-bottom: 0px solid;">
+                      However, it is worth to mention that other class of MHC genes located near HLA-G (HLA- DQ and HLA-DRB1) have already been published in the context of endometriosis [cited PMID: 20797713 and other two articles].
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 1px solid black;">
+                    </td>
+                    <td style="width: 15%; padding: 0px 1px 0px 5px; border-bottom: 1px solid black;">
+                      28611158
+                    </td>
+                    <td style="width: 70%; padding: 0px 1px 0px 5px; border-bottom: 1px solid black;">
+                      Interestingly, genome-wide association studies of human populations have revealed that single-nucleotide polymorphisms in the single human Ccl21 gene are associated with autoimmune diseases, including rheumatoid arthritis and dermatomyositis [cited PMID: 20797713 and other four articles].
+                    </td>
+                  </tr>
+                </table>
+
+                Note:
+                - The diversity scores range from 0 to 0.45.
+                - And I observed that citation contexts mentioning different knowledge contents have higher diversity score.
+                - As shown in the examples here, the diversity score of the first set of citation contexts is low because these two contexts are almost identical.
+                - In the next set of citation contexts, different knowledge contents were mentioned.
+                - The first two contexts state the relationship between endometriosis and autoimmune diseases.
+                - The later two are about the specific genes relating to autoimmune diseases and endometriosis
+
+                - HCQ: A drug for treating autoimmune conditions. The citing articles used the procedure described in the cited work
+                
+
+
+                ---
+                ### RQ 2b - Future work: Embedding diversity metric evaluation
+                
+                
+                - Relationship between diversity of citation contexts and citation purposes<br><br>
+                - The SciCite dataset
+                  - 11,020 citation contexts with annotations of three categories of citation purposes (Cohan et al., 2019)
+                    - <em>Background information</em>, <em>Method</em>, and <em>Result comparison</em>
+                  - 4,914 (44.59%) were from articles with PMIDs.
+
+                Note:
+                - For future work, the first plan is to evaluate whether the embedding diversity metric captures the diversity of citation contexts.
+                - And the evaluation has two parts.
+                - First, I plan to look at the relationship between diversity scores and citation purposes.
+                - This is because the diversity of knowledge contents may be related to citation purposes, but citation purposes cannot 100% explain the diversity of knowledge contents.
+                - For example, you can imagine that the knowledge contents in method citations and background citations can be different.
+                - But two background citations could mention different knowledge contents as well.
+                - To conduct the evaluation, I plan to use SciCite.
+                - It's a citation context dataset containing annotations of three categories of citation purposes.
+                
+                - Citing article and cited article level
+                - Citation contexts from the same citing article and citation contexts mentioning the same cited article.
+                - regression analysis is a possible approach since it can evaluate whether the citation purposes can explain the embedding diversity scores.
+
+
+                ---
+                ### RQ 2b - Future work: Embedding diversity metric evaluation
+
+                - The diversity of biomedical named entities in the citation contexts
+                  - Biomedical-related nouns and noun phrases
+                  - Partially reflect the knowledge contents mentioned in the citation contexts
+                - NCBI’s PubTator
+                - Gini-Simpson index<br>
+                  <div style="width:0; float:left; line-height: normal;">
+                    <p style="font-size: x-large; text-align: left;">$$ \text{Entity Diversity} = \text{1-}\sum_{i=1}^{R}\left( \frac{n_i\left( n_i-1 \right)}{N\left( N-1 \right)} \right)$$</p>
+                    <ul>
+                      <li style="margin-top:0%; margin-bottom: 0%;">
+                        <p style="font-size: x-large; text-align: left; line-height: 0; padding-top: 0%; padding-bottom: 0;"> $$ n_i \text{ is the count of an entity’s appearances in the citation contexts} $$ </p>
+                      </li>
+                      <li style="margin-top:0%; margin-bottom: 0%;">
+                        <p style="font-size: x-large; text-align: left; line-height: 0; padding-top: 0%; padding-bottom: 0;"> $$ N \text{ is the total number of entities’ appearances in the citation contexts} $$ </p>
+                      </li>
+                      <li style="margin-top:0%; margin-bottom: 0%;">
+                        <p style="font-size: x-large; text-align: left; line-height: 0; padding-top: 0%; padding-bottom: 0;"> $$ R \text{ is the unique number of entities in the citation contexts} $$ </p>
+                      </li>
+                    </ul>
+                  </div>
+                
+                Note:
+                - I also plan to look at the relationship between diversity scores and the diversity of biomedical named entities in the citation contexts.
+                - This is because these named entities may represent biomedical concepts, so they may partially reflect the knowledge contents mentioned in the citation contexts.
+                - For this part of the evaluation, I plan to use NCBI’s PubTator to identify the biomedical named entities.
+                - Because PubTator is a tool designed for processing articles in PubMed and PMC, and PMC is the source of the articles in my dataset.
+                - To calculate the diversity of named entities, I plan to use the Gini-Simpson index.
+                - This index measures diveristy by the number of distinct entities and the relative abundance of each entity.
+                - For a set of citation contexts, if it has a higher number of distinct entities, and the number of each entity is more evenly distributed, the diveristy score is higher.
+
+                - The diversity of biomedical named entities appearing in the citation contexts may be correlated with the embedding diversity scores.
+                - genes/proteins, chemicals, diseases, species, genetic variants, and cell lines
+
+                ---
+                ### RQ 2b - Future work: Factors that may explain the diversity of citation contexts
+
+                - Previous studies focused on the number of distinct knowledge contents in an article that had been cited in the literature.<br><small>(Bornmann et al., 2020; Leng, 2021; Shkurko, 2018; Small, 1978)</small>
+                - Gap: What factors may influence the diversity of citation contexts mentioning an article?
+                
+                <br>
+
+                <table style="font-size: 20px;">
+                  <tr>
+                    <td style="width: 20%; border-top: 1px solid black;">
+                      Category
+                    </td>
+                    <td style="width: 80%; border-top: 1px solid black;">
+                      Factor
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 20%; border-bottom: 0px solid;">
+                      Author-related
+                    </td>
+                    <td style="width: 80%; border-bottom: 0px solid;">
+                      Number of unique citing authors, Diversity of citing authors, Number of unique disciplines of citing authors, Diversity of citing authors’ disciplines, Number of citation contexts being self- citations
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 20%; border-bottom: 0px solid;">
+                      Article-related
+                    </td>
+                    <td style="width: 80%; border-bottom: 0px solid;">
+                      Publication type, Length of the cited article, Years between publication year and the last citation, Number of citing journals
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 20%; border-bottom: 1px solid;">
+                      Other
+                    </td>
+                    <td style="width: 80%; border-bottom: 1px solid;">
+                      Number of articles mentioned in the citation contexts, Length of the citation contexts
+                    </td>
+                  </tr>
+                </table>
+
+                Note:
+                - The last part of the future work is exploring the factors that may explain the diversity of citation contexts.
+                - This analysis can add to our understanding of the diversity of knowledge diffusion.
+                - For now, I have thought about several factors.
+                - First, authors may be related to the diversity of citation contexts because they are the people who wrote the sentences.
+                - Studies have found that authors may reuse text, so who the citing authors are may partly explain the diversity.
+                - Some characteristics of articles may also be related to the diversity.
+                - For example, compared to a research article, there could be more knowledge contents in a review article.
+
+                ---
+                ### Timeline
+
+                <img style="float:left" data-src="figs/timeline_v2.png" height="600" width="1000">
+
+                Note:
+                - Six months are planned for evaluating the embedding diversity metric.
+                - After that, I will move on to the analysis of the factors that may explain the diversity.
+                - During the process of evaluation and analysis, I will also start writing my thesis.
+                - I plan to defend my thesis in April, 2026.
+
+                ---
+                ### References
+
+                <p class="ref">
+                  Amro, B., Ramirez Aristondo, M. E., Alsuwaidi, S., Almaamari, B., Hakim, Z., Tahlak, M., Wattiez, A., & Koninckx, P. R. (2022). New understanding of diagnosis, treatment and prevention of endometriosis. <em>International Journal of Environmental Research and Public Health, 19</em>(11), 6725. https://doi.org/10.3390/ijerph19116725
+                </p>
+                <p class="ref">
+                  Bar-Ilan, J., & Halevi, G. (2017). Post retraction citations in context: A case study. <em>Scientometrics, 113</em>(1), 547–565. https://doi.org/10.1007/s11192-017-2242-0
+                </p>
+                <p class="ref">
+                  Bolland, M. J., Grey, A., & Avenell, A. (2021). Citation of retracted publications: A challenging problem. <em>Accountability in Research, 29</em>(1), 18–25. https://doi.org/10.1080/08989621.2021.1886933
+                </p>
+                <p class="ref">
+                  Bornmann, L., Wray, K. B., & Haunschild, R. (2020). Citation concept analysis (CCA): A new form of citation analysis revealing the usefulness of concepts for other researchers illustrated by exemplary case studies including classic books by Thomas S. Kuhn and Karl R. Popper. <em>Scientometrics, 122</em>(2), 1051–1074. https://doi.org/10.1007/s11192-019-03326-2
+                </p>
+                <p class="ref">
+                  Candal-Pedreira, C., Ruano-Ravina, A., Fernández, E., Ramos, J., Campos-Varela, I., & Pérez-Ríos, M. (2020). Does retraction after misconduct have an impact on citations? A pre–post study. <em>BMJ Global Health, 5</em>(11), Article 11. https://doi.org/10.1136/bmjgh-2020-003719
+                </p>
+                <p class="ref">
+                  Chen, Q., Peng, Y., & Lu, Z. (2019). BioSentVec: Creating sentence embeddings for biomedical texts. <em>2019 IEEE International Conference on Healthcare Informatics</em>, 1–5. https://doi.org/10.1109/ICHI.2019.8904728
+                </p>
+                <p class="ref">
+                  Citron, D. T., & Ginsparg, P. (2015). Patterns of text reuse in a scientific corpus. <em>Proceedings of the National Academy of Sciences, 112</em>(1), 25–30. https://doi.org/10.1073/pnas.1415135111
+                </p>
+                <p class="ref">
+                  Cohan, A., Ammar, W., van Zuylen, M., & Cady, F. (2019). Structural scaffolds for citation intent classification in scientific publications. <em>Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, 1</em>, 3586–3596. https://doi.org/10.18653/v1/N19-1361
+                </p>
+                <p class="ref">
+                  Dal-Ré, R., & Ayuso, C. (2020). For how long and with what relevance do genetics articles retracted due to research misconduct remain active in the scientific literature. <em>Accountability in Research, 28</em>(5), 280–296. https://doi.org/10.1080/08989621.2020.1835479
+                </p>
+                <p class="ref">
+                  Jurgens, D., Kumar, S., Hoover, R., McFarland, D., & Jurafsky, D. (2018). Measuring the evolution of a scientific field through citation frames. <em>Transactions of the Association for Computational Linguistics, 6</em>, 391–406. https://doi.org/10.1162/tacl_a_00028
+                </p>
+                <p class="ref">
+                  Khadka, A., & Knoth, P. (2018). Using citation-context to reduce topic drifting on pure citation-based recommendation. <em>Proceedings of the 12th ACM Conference on Recommender Systems</em>, 362–366. https://doi.org/10.1145/3240323.3240379
+                </p>
+                <p class="ref">
+                  Leng, R. I. (2021). Diversity in citations to a single study: A citation context network analysis of how evidence from a prospective cohort study was cited. <em>Quantitative Science Studies, 2</em>(4), 1216–1245. https://doi.org/10.1162/qss_a_00154
+                </p>
+                <p class="ref">
+                  Liu, Y., & Chen, M. (2021). Applying text similarity algorithm to analyze the triangular citation behavior of scientists. <em>Applied Soft Computing, 107</em>, 107362. https://doi.org/10.1016/j.asoc.2021.107362
+                </p>
+                <p class="ref">
+                  Lo, K., Wang, L. L., Neumann, M., Kinney, R., & Weld, D. (2020). S2ORC: The Semantic Scholar Open Research Corpus. <em>Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics</em>, 4969–4983. https://doi.org/10.18653/v1/2020.acl-main.447
+                </p>
+                <p class="ref">
+                  Mott, A., Fairhurst, C., & Torgerson, D. (2019). Assessing the impact of retraction on the citation of randomized controlled trial reports: An interrupted time-series analysis. <em>Journal of Health Services Research & Policy, 24</em>(1), Article 1. https://doi.org/10.1177/1355819618797965
+                </p>
+                <p class="ref">
+                  Pfeifer, M. P., & Snodgrass, G. L. (1990). The continued use of retracted, invalid scientific literature. <em>JAMA, 263</em>(10), 1420-1423. https://doi.org/10.1001/jama.1990.03440100140020
+                </p>
+                <p class="ref">
+                  Shkurko, A. V. (2018). How many knowledge claims are there in a scientific text? A study of three neuroscientific articles’ content as reflected in the citing publications. <em>Sociology of Science and Technology, 9</em>(2), 71–85. https://doi.org/10.24411/2079–0910–2018–10005
+                </p>
+                <p class="ref">
+                  Small, H. (1978). Cited documents as concept symbols. <em>Social Studies of Science, 8</em>(3), 327–340. https://doi.org/10.1177/030631277800800305
+                </p>
+                <p class="ref">
+                  Smith, L. C. (1981). Citation analysis. <em>Library Trends, 30</em>(1), 83–106.
+                </p>
+                <p class="ref">
+                  Taylor, H. S., Kotlyar, A. M., & Flores, V. A. (2021). Endometriosis is a chronic systemic disease: Clinical challenges and novel innovations. <em>The Lancet, 397</em>(10276), 839–852. https://doi.org/10.1016/S0140-6736(21)00389-5
+                </p>
+                <p class="ref">
+                  Theis-Mahon, N. R., & Bakker, C. J. (2020). The continued citation of retracted publications in dentistry. <em>Journal of the Medical Library Association, 108</em>(3), 389–397. https://doi.org/10.5195/jmla.2020.824
+                </p>
+                <p class="ref">
+                  van der Vet, P. E., & Nijveen, H. (2016). Propagation of errors in citation networks: A study involving the entire citation network of a widely cited paper published in, and later retracted from, the journal Nature. <em>Research Integrity and Peer Review, 1</em>, 3. https://doi.org/10.1186/s41073-016-0008-5
+                </p>
+                <p class="ref">
+                  Wu, J., Hiltabrand, R., Soós, D., & Giles, C. L. (2022). Scholarly big data quality assessment: A case study of document linking and conflation with S2ORC. <em>Proceedings of the 22nd ACM Symposium on Document Engineering</em>, 1–4. https://doi.org/10.1145/3558100.3563850
+                </p>
+                <p class="ref">
+                  Zhang, Y., Chen, Q., Yang, Z., Lin, H., & Lu, Z. (2019). BioWordVec, improving biomedical word embeddings with subword information and MeSH. <em>Scientific Data, 6</em>(1), 52. https://doi.org/10.1038/s41597-019-0055-0
+                </p>
+
+
+
+
+
+              </textarea>
+            </section>                 
+            <!-- Backup slides -->
+            <!-- data-visibility="hidden"  -->
+            <section data-markdown data-separator="---" data-separator-notes="^Note:" style="vertical-align:top;text-align:left;font-size:75%;line-height:1.4;" data-transition="none">
+              <textarea data-template >
+                ### OpCitance: The pipeline
+
+                <table style="width:100%; height: 100%;text-align:left;">
+                  <tr>
+                    <td style="width:25%;border-bottom: 0px solid;vertical-align:top;line-height:1.5;font-size:88%;">
+                      <ul>
+                        <li class="fragment semi-fade-out" data-fragment-index="0">
+                          References and their PMIDs<div style="font-size: 70%; line-height: 1.2; padding-bottom: 10px;">(<code>ref</code> tags; <code>pub-id</code> tags)</div>
+                        </li>
+                        <li class="fragment fade-in-then-semi-out" data-fragment-index="0">
+                          Components in an article 
+                        </li>
+                        <li class="fragment fade-in-then-semi-out" data-fragment-index="1">
+                          IMRaD<div style="font-size: 70%; line-height: 1.2; padding-bottom: 10px;">(section titles and section types)</div>
+                        </li> 
+                        <li class="fragment fade-in-then-semi-out" data-fragment-index="2">
+                          Inline citations<div style="font-size: 70%; line-height: 1.2; padding-bottom: 10px;">(<code>xref</code> tags)</div>
+                        </li> 
+                        <li class="fragment fade-in-then-semi-out" data-fragment-index="3">
+                          Citation contexts
+                        </li> 
+                        <li class="fragment fade-in-then-semi-out" data-fragment-index="4">
+                          Labelling sentences
+                        </li> 
+                        <li class="fragment" data-fragment-index="5">
+                          Verify XML-tagged PMIDs
+                        </li> 
+                      </ul>
+                    </td>
+                    <td style="width:75%;border-bottom: 0px solid; padding:0px;">
+                      <div class="r-stack">
+                        <img data-src="figs/pipeline.png" height="550" width="100%">
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                ---
+                ### OpCitance: Identify IMRaD categories
+
+                - Section titles
+                  - <code>sec</code> tags
+                  - <code>title</code> tags or <code>label</code> tags
+                - Section types
+                  - <code>sec-type</code> attribute<br><br>
+                
+                <table align="left" style="text-align:left;font-size: x-large;">
+                  <tr>
+                    <td style="width:10%; border-top: 1px solid black;">Label</td>
+                    <td style="width:25%; border-top: 1px solid black;">IMRaD category</td>
+                    <td style="width:65%; border-top: 1px solid black;">Cue words and phrases</td>
+                  </tr>
+                  <tr>
+                    <td style="width:10%; border-bottom: 0px solid black;">I</td>
+                    <td style="width:25%; border-bottom: 0px solid black;">Introduction/Background</td>
+                    <td style="width:65%; border-bottom: 0px solid black;">intro*, overview, background, history, related work, related stud*, previous work, previous stud*, review</td>
+                  </tr>
+                  <tr>
+                    <td style="width:10%; border-bottom: 0px solid black;">M</td>
+                    <td style="width:25%; border-bottom: 0px solid black;">Method</td>
+                    <td style="width:65%; border-bottom: 0px solid black;">method, material, experimental procedure, protocol, data</td>
+                  </tr>
+                  <tr>
+                    <td style="width:10%; border-bottom: 0px solid black;">R</td>
+                    <td style="width:25%; border-bottom: 0px solid black;">Result</td>
+                    <td style="width:65%; border-bottom: 0px solid black;">result, finding</td>
+                  </tr>
+                  <tr>
+                    <td style="width:10%; border-bottom: 0px solid black;">D</td>
+                    <td style="width:25%; border-bottom: 0px solid black;">Conclusion/Discussion</td>
+                    <td style="width:65%; border-bottom: 0px solid black;">conclud*, conclusion, summary, discuss*, future</td>
+                  </tr>
+                  <tr>
+                    <td style="width:10%; border-bottom: 1px solid black;">NoIMRaD</td>
+                    <td style="width:25%; border-bottom: 1px solid black;">-</td>
+                    <td style="width:65%; border-bottom: 1px solid black;">The string does not contain the above terms.</td>
+                  </tr>
+                </table>
+
+                ---
+                ### OpCitance: Labelling sentences
+
+                - Label by their components (abstract, body, etc.)
+                - IMRaD only applied to body text
+                
+                <br><br>
+                <table align="left" style="text-align:left;font-size: 80%;">
+                  <tr>
+                    <td style="width:10%; border-top: 1px solid black;">PMCID</td>
+                    <td style="width:10%; border-top: 1px solid black;">Location</td>
+                    <td style="width:10%; border-top: 1px solid black;">IMRaD</td>
+                    <td style="width:70%; border-top: 1px solid black;">Sentence</td>
+                  </tr>
+                  <tr>
+                    <td style="width:10%; border-bottom: 0px solid black;">5675298</td>
+                    <td style="width:10%; border-bottom: 0px solid black;">abstract</td>
+                    <td style="width:10%; border-bottom: 0px solid black;">NoIMRaD</td>
+                    <td style="width:70%; border-bottom: 0px solid black;">Information about benign prostatic hyperplasia (BPH) has become increasingly accessible on the Internet. Though the ability to find such material is encouraging, its readability and impact on informing patient decision making are not known.</td>
+                  </tr>
+                  <tr>
+                    <td style="width:10%; border-bottom: 0px solid black;">5675298</td>
+                    <td style="width:10%; border-bottom: 0px solid black;">body</td>
+                    <td style="width:10%; border-bottom: 0px solid black;">I</td>
+                    <td style="width:70%; border-bottom: 0px solid black;">Benign prostatic hyperplasia (BPH) is a prevalent condition affecting the quality of life of millions of adult men (|bibr38-1557988316680935|).</td>
+                  </tr>
+                  <tr>
+                    <td style="width:10%; border-bottom: 1px solid black;">5675298</td>
+                    <td style="width:10%; border-bottom: 1px solid black;">appendix</td>
+                    <td style="width:10%; border-bottom: 1px solid black;">NoIMRaD</td>
+                    <td style="width:70%; border-bottom: 1px solid black;">Websites at or Below the Eighth-Grade SMOG Reading Level.</td>
+                  </tr>
+                </table>
+
+                ---
+                ### OpCitance: Quality evaluation (document linking)
+
+                - Entrez citation data
+                  - 70.96% (1,290,693 out of 1,818,893) of the articles had at least one discrepancy between the PMIDs of citations.
+                - Patci
+                  - 98.25% (135,340,795/137,748,787) of the inline citations were verified.<br><br>
+                <table align="left" style="text-align:left;font-size: 70%;">
+                  <tr>
+                    <td style="width:18%; border-top: 1px solid black;">Indicator value</td>
+                    <td style="width:60%; border-top: 1px solid black;">Definition</td>
+                    <td colspan="2" style="width:30%; border-top: 1px solid black; text-align: center;"># Inline citations (%)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">SAME</td>
+                    <td style="border-bottom: 0px solid black;">The Patci-identified ID is the same as the XML- tagged PMID.</td>
+                    <td style="width:13%; border-bottom: 0px solid black; text-align: right;">101,885,318</td>
+                    <td style="width:10%; border-bottom: 0px solid black;">(75.28)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">NONE</td>
+                    <td style="border-bottom: 0px solid black;">The citation has neither a Patci-identified ID nor an XML-tagged PMID.</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">21,452,327</td>
+                    <td style="border-bottom: 0px solid black;">(15.85)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">INSERT</td>
+                    <td style="border-bottom: 0px solid black;">The citation has a Patci-identified ID but lacks an XML-tagged PMID.</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">11,595,741</td>
+                    <td style="border-bottom: 0px solid black;">(8.57)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">SWAP</td>
+                    <td style="border-bottom: 0px solid black;">The Patci-identified PMID is different from the XML-tagged PMID.</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">317,513</td>
+                    <td style="border-bottom: 0px solid black;">(0.23)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">DELETE</td>
+                    <td style="border-bottom: 1px solid black;">The citation has an XML-tagged PMID, but Patci does not identify any ID for it.</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">89,896</td>
+                    <td style="border-bottom: 1px solid black;">(0.07)</td>
+                  </tr>
+                </table>
+
+
+                ---
+                ### OpCitance: Quality evaluation (IMRaD)
+
+                <br>
+
+                <table style="width:100%; height: 100%;text-align:left;">
+                  <tr>
+                    <td style="width:25%;border-bottom: 0px solid;vertical-align:top;line-height:1.5;font-size:25px;">
+                      <ul>
+                        <li class="fragment semi-fade-out" data-fragment-index="0">
+                          Inline citations in IMRaD sections by text progression
+                        </li>
+                        <li class="fragment fade-in-then-semi-out" data-fragment-index="0">
+                          Precision, recall, and F1 
+                        </li>
+                      </ul>
+                    </td>
+                    <td style="width:75%;border-bottom: 0px solid; padding:0px;">
+                      <div class="r-stack">
+                        <img class="fragment fade-out" data-fragment-index="0" data-src="figs/imrad.png" height="450" width="700">
+                        <table class="fragment current-visible" data-fragment-index="1" align="left" style="text-align:left;font-size: 55%;">
+                          <tr>
+                            <td style="width:20%; border-top: 1px solid black; border-bottom: 1px solid;">Evaluation Level</td>
+                            <td style="width:20%; border-top: 1px solid black; border-bottom: 1px solid;">IMRaD</td>
+                            <td style="width:20%; border-top: 1px solid black; border-bottom: 1px solid;">Precision</td>
+                            <td style="width:20%; border-top: 1px solid black; border-bottom: 1px solid;">Recall</td>
+                            <td style="width:20%; border-top: 1px solid black; border-bottom: 1px solid;">F1</td>
+                          </tr>
+                          <tr>
+                            <td style="border-bottom: 0px solid black;">Section</td>
+                            <td style="border-bottom: 0px solid black;">I</td>
+                            <td style="border-bottom: 0px solid black;">0.957</td>
+                            <td style="border-bottom: 0px solid black;">0.854</td>
+                            <td style="border-bottom: 0px solid black;">0.903</td>
+                          </tr>
+                          <tr>
+                            <td style="border-bottom: 0px solid black;"></td>
+                            <td style="border-bottom: 0px solid black;">M</td>
+                            <td style="border-bottom: 0px solid black;">1.000</td>
+                            <td style="border-bottom: 0px solid black;">0.820</td>
+                            <td style="border-bottom: 0px solid black;">0.901</td>
+                          </tr>
+                          <tr>
+                            <td style="border-bottom: 0px solid black;"></td>
+                            <td style="border-bottom: 0px solid black;">R</td>
+                            <td style="border-bottom: 0px solid black;">1.000</td>
+                            <td style="border-bottom: 0px solid black;">0.915</td>
+                            <td style="border-bottom: 0px solid black;">0.956</td>
+                          </tr>
+                          <tr>
+                            <td style="border-bottom: 0px solid black;"></td>
+                            <td style="border-bottom: 0px solid black;">D</td>
+                            <td style="border-bottom: 0px solid black;">1.000</td>
+                            <td style="border-bottom: 0px solid black;">0.993</td>
+                            <td style="border-bottom: 0px solid black;">0.996</td>
+                          </tr>
+                          <tr>
+                            <td style="border-bottom: 0px solid black;"></td>
+                            <td style="border-bottom: 0px solid black;">NoIMRaD</td>
+                            <td style="border-bottom: 0px solid black;">0.638</td>
+                            <td style="border-bottom: 0px solid black;">0.949</td>
+                            <td style="border-bottom: 0px solid black;">0.763</td>
+                          </tr>
+                          <tr>
+                            <td style="border-bottom: 1px solid black;"></td>
+                            <td style="border-bottom: 1px solid black;">Macro average</td>
+                            <td style="border-bottom: 1px solid black;">0.919</td>
+                            <td style="border-bottom: 1px solid black;">0.905</td>
+                            <td style="border-bottom: 1px solid black;">0.904</td>
+                          </tr>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                ---
+                ### RQ 2a: Citation purposes and examples
+
+                <table align="left" style="text-align:left;font-size: 50%;">
+                  <tr>
+                    <td style="width:11%; border-top: 1px solid black;">Purpose</td>
+                    <td style="width:44%; border-top: 1px solid black;text-indent: -0.5em;">Description</td>
+                    <td style="width:45%; border-top: 1px solid black;text-indent: -0.5em;">Example</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Comparison</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Authors of the citing paper compared “their” results or methods with the retracted paper. According to the tone, this category is further divided into negative (-), positive (+), and neutral (±). The negative tone refers to the cases that inconsistency, contradiction, or discrepancy is reported in the comparison. The positive tone refers to the cases that consistency is reported in the comparison. The neutral tone refers to the cases that the consistency between the compared results was unclear.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Overall, our results provide no evidence for a beneficial effect of multivitamin and multimineral supplementation on cognitive function in the majority of men and women 65 years and over living in the community. This result is consistent with all previous studies in non-selected elderly populations [2-10] apart from the retracted Canadian study [Retraction PMID:11527656].</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Correction</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">The retracted paper was cited to make a correction.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">In our previous publication [1], Figure 4 involved the analysis of chemotherapy-response signatures (as carried out independently by author AP and described in a 2006 Nature Medicine article [Retraction PMID: 17057710]). It has recently been determined that the chemotherapy-response signatures in [Retraction PMID: 17057710] are not reproducible, causing retraction of that article. As such, the results presented in Figure 4 of our original paper [1] are no longer valid.</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">Example of problematic science</td>
+                    <td style="border-bottom: 1px solid black;text-indent: -0.5em;">The retracted paper was cited to provide an example of problematic science. This purpose satisfies one of the following conditions: (1) The retracted paper was cited to provide an example of problematic research (e.g., irreproducible research, unreliable research, research involving scientific misconduct, a flawed study, etc.). (2) The retracted paper was cited to provide an example where peer review failed, and problematic science was published. (3) The retracted paper was cited to provide an example showing a problem in scientific research or scholarly communication. (4) The retracted paper was cited to provide an example of the societal impact of problematic research.</td>
+                    <td style="border-bottom: 1px solid black;text-indent: -0.5em;">There are also cases of data manipulation/fraud in NIH-supported, peer-reviewed research—more than 30 cases documented in the past 3 years according to the U.S. Public Health Service’s Office of Research Integrity (2009). One example is the study of Arnold et al. [Retraction PMID: 8633243] in which the authors reported huge synergistic effects of endocrine disruptors in the yeast estrogen assay in vitro. McLachlan [Retraction notice PMID:9254413] rescinded that paper because neither his laboratory nor others could replicate the findings. It was later determined that there was scientific misconduct and the original data were fabricated (NIH 2001).</td>
+                  </tr>
+                </table>
+                
+                ---
+                ### RQ 2a: Citation purposes and examples (continued)
+
+                <table align="left" style="text-align:left;font-size: 50%;">
+                  <tr>
+                    <td style="width:11%; border-top: 1px solid black;">Purpose</td>
+                    <td style="width:40%; border-top: 1px solid black;text-indent: -0.5em;">Description</td>
+                    <td style="width:49%; border-top: 1px solid black;text-indent: -0.5em;">Example</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Exclusion rationale</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">The retracted paper was cited to explain why it is excluded from use/consideration. Especially found in the context of research synthesis (e.g. review articles and meta- analyses which provide a formal exclusion rationale for papers that are not included.) This purpose can also be found in the literature review section of a research article.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">The meta-analysis presented here provides a valid and up to date summary of the relevant literature, including a recently published randomised controlled trial of 339 patients with a confirmed diagnosis of uncomplicated appendicitis. It excludes the study that has been retracted subsequent to publication [Retraction PMID: 19277796], as well as another for which it was not clear if patients were randomised.</td>
+                  </tr>
+                    <td style="border-bottom: 0px solid black;">Notify retraction included</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Notify readers that one or more retracted papers were included in a different, previous published review article, guideline, or paper.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Systematic reviews and meta-analyses of the trials, including a Cochrane review comparing antibiotic treatment and appendicectomy, published in recent years summarised the evidence as either in favour of antibiotic treatment or inconclusive. This could possibly result from inclusion of trials with poor methods or retracted since publication [Retraction PMID: 19277796], or from simplifying the evidence as a summary of both randomised and non-randomised studies.</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Related work</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">The retracted paper was cited to show what has been done or found in the past or was cited for one of the following reasons: (1) The Retracted paper was once a landmark in the field; (2) the retracted paper was the origin/pioneer of something (e.g., "X first identified/describe Y", "X was identified as a novel ....", "X was initially proposed...", or "X was originally..."); (3) the retracted paper led to an important event in the field, such as Wakefield's paper's influence on the autism-vaccine link and the anti-vaccine movement.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">The COOPERATE study [Retraction PMID: 12531578] even showed that dual therapy with trandolapril and losartan reduced the risk of the primary endpoint (time to doubling of serum creatinine level or end stage renal disease) by 60% better than monotherapy, thereby becoming one of the most widely quoted studies by the Lancet. After such seemingly robust evidence many physicians accepted that reduction of albuminuria or proteinuria was synonymous with nephroprotection.</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">Republication of retraction</td>
+                    <td style="border-bottom: 1px solid black;text-indent: -0.5em;">In the republication of the retracted paper, the authors cited the retracted paper to announce the republication.</td>
+                    <td style="border-bottom: 1px solid black;text-indent: -0.5em;">This article is a revised version of a paper of the same title [Retraction PMID: 22241970] that was previously published in PLOS Computational Biology and was subsequently retracted when a computational error was discovered.</td>
+                  </tr>
+                </table>
+
+                ---
+                ### RQ 2a: Citation purposes and examples (continued)
+
+                <table align="left" style="text-align:left;font-size: 50%;">
+                  <tr>
+                    <td style="width:11%; border-top: 1px solid black;">Purpose</td>
+                    <td style="width:40%; border-top: 1px solid black;text-indent: -0.5em;">Description</td>
+                    <td style="width:49%; border-top: 1px solid black;text-indent: -0.5em;">Example</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Reproduce</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">A citation to the retracted paper was made because the citing paper tried to reproduce/repeat the finding or experiment mentioned in the retracted paper.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">In a further effort to obtain an intelligence priming effect, we attempted to replicate Gordijn and Stapel's study. Their article [Retraction PMID: 17393877] was retracted after the completion of Experiment 7 and hence their data can be given no evidential weight. Nevertheless, the hypothesis they put forward is a reasonable one and thus we report Experiment 7 in relation to that hypothesis.</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Subject of study</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Cited retraction is the object of study of a case study about retraction, or is the data used in a study about retraction, scientific misconduct, or peer review. Note that in these studies, retracted papers can be cited in the results.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Our objective was to test whether such simple tools applied to a manuscript known to be fraudulent [Retraction PMID: 19923501] would have helped to detect some warning signals of poor quality.</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Use</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Citing paper uses something from the cited retracted paper. This type of citation is often found in Methods sections.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">To verify whether the above-mentioned points have the potential of playing substantial roles in explaining this story, we planned a proof-of-concept survey of DNA sequence databases, and namely: (i) A bioinformatic analysis on the primer sequences described by Lombardi et al ([Retraction PMID: 19815723]), compared against human and murine (house mouse Mus musculus) genomes.</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">Other</td>
+                    <td style="border-bottom: 1px solid black;text-indent: -0.5em;">Those do not belong to the above categories.</td>
+                    <td style="border-bottom: 1px solid black;text-indent: -0.5em;">--</td>
+                  </tr>
+                </table>
+
+                ---
+                ### RQ 2a: Citation sentiments
+
+                <table align="left" style="text-align:left;font-size: 60%;">
+                  <tr>
+                    <td style="width:11%; border-top: 1px solid black;">Sentiment</td>
+                    <td style="width:44%; border-top: 1px solid black;text-indent: -0.5em;">Definition</td>
+                    <td style="width:45%; border-top: 1px solid black;text-indent: -0.5em;">Example</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Strongly positive</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Citing work uses something (e.g., definitions, concepts, materials, equipment, and techniques) in the retracted work. Citing work confirms, is supported by, depends on, or explicitly agrees with the retracted work.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Similar to our results, SLA mRNA expression levels were previously reported to be downregulated in human B-cells and were strongly expressed in naïve, pre-germanal center, and germinal-center B-cells based on gene expression analysis. [Retraction PMID: 12438421].</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Weakly positive</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Retracted work is cited as related and legitimate, without raising concerns.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Altered NPM1 expression was observed in many types of tumors, and mutated NPM1 is frequently detected in human hematopoietic malignancies, especially in acute myeloid leukemia (AML) [Retraction PMID: 18401421].</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Negative</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">Citing work disputes, corrects, questions, or disagrees with the retracted work. Citing work expresses concerns or casts doubts on the retracted work. Citing work indicates that the retracted work has shortcomings or uncertainty. Citing work mentions that the findings reported in the retracted work are controversial or lacking confirmation.</td>
+                    <td style="border-bottom: 0px solid black;text-indent: -0.5em;">The original report of an alphaproteobacterial Sphingomonas-related GAO [Retraction PMID: 15256569] was later shown to be incorrect and the FISH probes were shown to be binding to members of the Defluviicoccus cluster 1.</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">Neutral</td>
+                    <td style="border-bottom: 1px solid black;text-indent: -0.5em;">Retracted work is cited without additional comment. No judgment of validity is shown in the citation context.</td>
+                    <td style="border-bottom: 1px solid black;text-indent: -0.5em;">The contribution of inflammatory cytokines to tumor development has been investigated by other studies [Retraction PMID: 25544369, Non-retraction PMIDs: 18954521, 18036640]</td>
+                  </tr>
+                </table>
+
+                ---
+                ### RQ 2a: Locations of citations to retracted articles
+
+                - No substantial difference between how the retracted articles were cited before and after the retractions.
+                <img data-src="figs/retract_intxt.jpg" height="100%" width="100%">
+                
+                ---
+                ### RQ 2a: Locations of citations to retracted articles
+
+                <br>
+
+                - Single mention<br><br>
+                <table align="left" style="text-align:left;font-size: 65%;">
+                  <tr>
+                    <td style="width:10%; border-top: 1px solid black;">IMRaD</td>
+                    <td style="width:20%; border-top: 1px solid black; text-align: right;"># Pre-retraction pairs</td>
+                    <td style="width:10%; border-top: 1px solid black;">(%)</td>
+                    <td style="width:20%; border-top: 1px solid black; text-align: right;"># Post-retraction pairs (retraction not acknowledged)</td>
+                    <td style="width:10%; border-top: 1px solid black;">(%)</td>
+                    <td style="width:20%; border-top: 1px solid black; text-align: right;"># Post-retraction pairs (retraction acknowledged)</td>
+                    <td style="width:10%; border-top: 1px solid black;">(%)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black; text-indent: 0.5em;">Introduction/background</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">3,272</td>
+                    <td style="border-bottom: 0px solid black;">(27.52)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">2,359</td>
+                    <td style="border-bottom: 0px solid black;">(33.04)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">47</td>
+                    <td style="border-bottom: 0px solid black;">(16.43)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black; text-indent: 0.5em;">Methods</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">690</td>
+                    <td style="border-bottom: 0px solid black;">(5.8)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">397</td>
+                    <td style="border-bottom: 0px solid black;">(5.56)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">13</td>
+                    <td style="border-bottom: 0px solid black;">(4.55)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black; text-indent: 0.5em;">Results</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">971</td>
+                    <td style="border-bottom: 0px solid black;">(8.17)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">490</td>
+                    <td style="border-bottom: 0px solid black;">(6.86)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">29</td>
+                    <td style="border-bottom: 0px solid black;">(10.14)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black; text-indent: 0.5em;">Discussion/conclusion</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">3,656</td>
+                    <td style="border-bottom: 0px solid black;">(30.75)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">2,349</td>
+                    <td style="border-bottom: 0px solid black;">(32.90)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">46</td>
+                    <td style="border-bottom: 0px solid black;">(16.08)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black; text-indent: 0.5em;">IMRaD not identified</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">3,300</td>
+                    <td style="border-bottom: 1px solid black;">(27.76)</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">1,545</td>
+                    <td style="border-bottom: 1px solid black;">(22.64)</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">151</td>
+                    <td style="border-bottom: 1px solid black;">(52.80)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">Total</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">11,889</td>
+                    <td style="border-bottom: 1px solid black;">(100)</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">7,140</td>
+                    <td style="border-bottom: 1px solid black;">(100)</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">286</td>
+                    <td style="border-bottom: 1px solid black;">(100)</td>
+                  </tr>
+                </table>
+
+                Note:
+                - When the retracted paper was only cited once in the citing article
+                - Number of different IMRaD sections where multiple mentions appeared
+
+                ---
+                ### RQ 2a: Locations of citations to retracted articles
+
+                - Multiple mentions <!-- .element: style="font-size: 80%; line-height:1.5"-->
+                <table align="left" style="text-align:left; font-size: 60%;">
+                  <tr style="vertical-align: middle;">
+                    <td style="width:15%; border-top: 1px solid black;"># Different IMRaD sections</td>
+                    <td style="width:20%; border-top: 1px solid black; text-align: right;"># Pre-retraction pairs</td>
+                    <td style="width:5%; border-top: 1px solid black; ">(%)</td>
+                    <td style="width:25%; border-top: 1px solid black; text-align: right;"># Post-retraction pairs (retraction not acknowledged)</td>
+                    <td style="width:3%; border-top: 1px solid black;">(%)</td>
+                    <td style="width:25%; border-top: 1px solid black; text-align: right;"># Post-retraction pairs (retraction acknowledged)</td>
+                    <td style="width:8%; border-top: 1px solid black;">(%)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black; text-indent: 0.5em;">1</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">2,225</td>
+                    <td style="border-bottom: 0px solid black;">(44.45)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">860</td>
+                    <td style="border-bottom: 0px solid black;">(46.66)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">68</td>
+                    <td style="border-bottom: 0px solid black;">(50.00)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black; text-indent: 0.5em;">2</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">2,188</td>
+                    <td style="border-bottom: 0px solid black;">(43.71)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">890</td>
+                    <td style="border-bottom: 0px solid black;">(48.29)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">57</td>
+                    <td style="border-bottom: 0px solid black;">(41.91)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black; text-indent: 0.5em;">3</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">483</td>
+                    <td style="border-bottom: 0px solid black;">(9.65)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">82</td>
+                    <td style="border-bottom: 0px solid black;">(4.45)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">10</td>
+                    <td style="border-bottom: 0px solid black;">(7.35)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black; text-indent: 0.5em;">4</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">109</td>
+                    <td style="border-bottom: 0px solid black;">(2.18)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">10</td>
+                    <td style="border-bottom: 0px solid black;">(0.54)</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">1</td>
+                    <td style="border-bottom: 0px solid black;">(0.74)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black; text-indent: 0.5em;">5</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">1</td>
+                    <td style="border-bottom: 1px solid black;">(0.02)</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">1</td>
+                    <td style="border-bottom: 1px solid black;">(0.05)</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">0</td>
+                    <td style="border-bottom: 1px solid black;">(0)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">Total</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">5,006</td>
+                    <td style="border-bottom: 1px solid black;">(100)</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">1,843</td>
+                    <td style="border-bottom: 1px solid black;">(100)</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">136</td>
+                    <td style="border-bottom: 1px solid black;">(100)</td>
+                  </tr>
+                </table>
+
+                <img data-src="figs/multi-mentions.jpg" height="400" width="600">
+
+                Note:
+                - the citing article mentioned the retracted article more than once in the full text
+
+                ---
+                ### RQ 2a: Numbers and percentages of citation contexts by each citation purpose
+
+                <table align="left" style="text-align:left;font-size: 70%;">
+                  <tr>
+                    <td style="width:50%; border-top: 1px solid black;">Purpose</td>
+                    <td style="width:25%; border-top: 1px solid black; text-align: right;"># Citation contexts</td>
+                    <td style="width:25%; border-top: 1px solid black;">(%)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Related work</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">453</td>
+                    <td style="border-bottom: 0px solid black;">(62.74)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Example of problematic science</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">62</td>
+                    <td style="border-bottom: 0px solid black;">(8.59)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Reproduce</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">40</td>
+                    <td style="border-bottom: 0px solid black;">(5.54)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Exclusion rationale</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">35</td>
+                    <td style="border-bottom: 0px solid black;">(4.85)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Subject of study</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">33</td>
+                    <td style="border-bottom: 0px solid black;">(4.57)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Comparison</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">26</td>
+                    <td style="border-bottom: 0px solid black;">(3.60)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Notify retraction included</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">24</td>
+                    <td style="border-bottom: 0px solid black;">(3.32)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Use</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">20</td>
+                    <td style="border-bottom: 0px solid black;">(2.77)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Other</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">14</td>
+                    <td style="border-bottom: 0px solid black;">(1.94)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid black;">Correction</td>
+                    <td style="border-bottom: 0px solid black; text-align: right;">10</td>
+                    <td style="border-bottom: 0px solid black;">(1.39)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">Republication of retraction</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">5</td>
+                    <td style="border-bottom: 1px solid black;">(0.69)</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid black;">Total</td>
+                    <td style="border-bottom: 1px solid black; text-align: right;">722</td>
+                    <td style="border-bottom: 1px solid black;">(100)</td>
+                  </tr>
+                </table>
+
+                ---
+                ### RQ 2a: A model for automatically identifying sentiments
+
+                - Nouns included in the BOW features:
+                  - accordance, addition, agreement, analysis, author, concern, contrast, controversy, correlation, example, experiment, evidence, failure, finding, hypothesis, improvement, instance, limitation, literature, method, model, other, report, research, result, study, suspicion, work.
+
+                ---
+                ### RQ 2a: A model for automatically identifying sentiments
+                
+                - Best model performance per category<br> <!-- .element: style="font-size: 85%; line-height:2"-->
+
+                <table style="font-size: 60%; line-height:1.2; margin-left:10px; border-collapse:collapse">
+                  <tr>
+                    <th width="25%" style="border-bottom: 0px solid; border-top: 1px solid;">Model</th>
+                    <th width="25%" style="border-bottom: 0px solid; border-top: 1px solid;">Features</th>
+                    <th width="20%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="2">Overall</th>
+                    <th width="40%" style="border-bottom: 0px solid; border-top: 1px solid;" colspan="4">Per category</th>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Accuracy</th>
+                    <th>Macro F1</th>
+                    <th>Sentiment</th>
+                    <th>Precision</th>
+                    <th>Recall</th>
+                    <th>F1</th>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid;" rowspan="4">Augmented CNN model 1</td>
+                    <td style="border-bottom: 1px solid;" rowspan="4">Word embeddings<br>+Sentence embeddings</td>
+                    <td style="border-bottom: 0px solid;">0.79</td>
+                    <td style="border-bottom: 0px solid;">0.60</td>
+                    <td style="border-bottom: 0px solid;">Negative</td>
+                    <td style="border-bottom: 0px solid;">0.61</td>
+                    <td style="border-bottom: 0px solid;">0.53</td>
+                    <td style="border-bottom: 0px solid;">0.56</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;">Neutral</td>
+                    <td style="border-bottom: 0px solid;">0.40</td>
+                    <td style="border-bottom: 0px solid;">0.21</td>
+                    <td style="border-bottom: 0px solid;">0.27</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;">Weakly positive</td>
+                    <td style="border-bottom: 0px solid;">0.84</td>
+                    <td style="border-bottom: 0px solid;">0.92</td>
+                    <td style="border-bottom: 0px solid;">0.87</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Strongly positive</td>
+                    <td>0.77</td>
+                    <td>0.66</td>
+                    <td>0.70</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid;" rowspan="4">Augmented CNN model 2</td>
+                    <td style="border-bottom: 1px solid;" rowspan="4">Word embeddings<br>+Sentence embeddings<br>+Pairwise cosine similarity<br>+Sentiment scores</td>
+                    <td style="border-bottom: 0px solid;">0.79</td>
+                    <td style="border-bottom: 0px solid;">0.60</td>
+                    <td style="border-bottom: 0px solid;">Negative</td>
+                    <td style="border-bottom: 0px solid; color:brown">0.62</td>
+                    <td style="border-bottom: 0px solid;">0.53</td>
+                    <td style="border-bottom: 0px solid; color:brown">0.57</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;">Neutral</td>
+                    <td style="border-bottom: 0px solid;">0.38</td>
+                    <td style="border-bottom: 0px solid;">0.22</td>
+                    <td style="border-bottom: 0px solid;">0.26</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;">Weakly positive</td>
+                    <td style="border-bottom: 0px solid;">0.84</td>
+                    <td style="border-bottom: 0px solid;">0.91</td>
+                    <td style="border-bottom: 0px solid;">0.88</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid;"></td>
+                    <td style="border-bottom: 1px solid;"></td>
+                    <td style="border-bottom: 1px solid;">Strongly positive</td>
+                    <td style="border-bottom: 1px solid;">0.74</td>
+                    <td style="border-bottom: 1px solid;">0.67</td>
+                    <td style="border-bottom: 1px solid;">0.70</td>
+                  </tr>
+                </table>
+
+                ---
+                ### RQ 2b - Future work: Embedding diversity metric evaluation
+
+                <br>
+
+                <table style="font-size: 70%; line-height:1.5; margin-left:10px; border-collapse:collapse;">
+                  <tr>
+                    <td width="18%" style="border-bottom: 1px solid; border-top: 1px solid;">Entities ($E_i$)</td>
+                    <td width="22%" style="border-bottom: 1px solid; border-top: 1px solid;">Counts of Entities’ Appearances in Citation Contexts ($n_i$)</td>
+                    <td width="10%" style="border-bottom: 1px solid; border-top: 1px solid;">Total ($N$)</td>
+                    <td width="35%" style="border-bottom: 1px solid; border-top: 1px solid;">Calculation</td>
+                    <td width="15%" style="border-bottom: 1px solid; border-top: 1px solid;">Entity Diversity</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid;">{$E_1, E_2, E_3$}</td>
+                    <td style="border-bottom: 0px solid;">{3, 3, 3}</td>
+                    <td style="border-bottom: 0px solid;">9</td>
+                    <td style="border-bottom: 0px solid; padding-bottom: 15px; padding-top: 15px;">$1-\left( \frac{\left( 3\times 2 \right)+\left( 3\times 2 \right)+\left( 3\times 2 \right)}{9\times 8} \right)$</td>
+                    <td style="border-bottom: 0px solid;">0.75</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid;"></td>
+                    <td style="border-bottom: 0px solid;">{5, 2, 2}</td>
+                    <td style="border-bottom: 0px solid;">9</td>
+                    <td style="border-bottom: 0px solid; padding-bottom: 15px; padding-top: 15px;">$1-\left( \frac{\left( 5\times 4 \right)+\left( 2\times 1 \right)+\left( 2\times 1 \right)}{9\times 8} \right)$</td>
+                    <td style="border-bottom: 0px solid;">0.67</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 0px solid;">{$E_1, E_2, E_3, E_4$}</td>
+                    <td style="border-bottom: 0px solid;">{3, 3, 3, 3}</td>
+                    <td style="border-bottom: 0px solid;">12</td>
+                    <td style="border-bottom: 0px solid; padding-bottom: 15px; padding-top: 15px;">$1-\left( \frac{\left( 3\times 2 \right)+\left( 3\times 2 \right)+\left( 3\times 2 \right)+\left( 3\times 2 \right)}{12\times 11} \right)$</td>
+                    <td style="border-bottom: 0px solid;">0.82</td>
+                  </tr>
+                  <tr>
+                    <td style="border-bottom: 1px solid;"></td>
+                    <td style="border-bottom: 1px solid;">{5, 3, 2, 2}</td>
+                    <td style="border-bottom: 1px solid;">12</td>
+                    <td style="border-bottom: 1px solid; padding-bottom: 15px; padding-top: 15px;">$1-\left( \frac{\left( 5\times 4 \right)+\left( 3\times 2 \right)+\left( 2\times 1 \right)+\left( 2\times 1 \right)}{12\times 11} \right)$</td>
+                    <td style="border-bottom: 1px solid;">0.77</td>
+                  </tr>
+                </table>
+
+              </textarea>
+            </section>
+          </div>
+        </div>
+      </body>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/dist/reveal.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/plugin/markdown/markdown.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/plugin/highlight/highlight.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/plugin/notes/notes.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1/plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+        margin: 0.1,
+        center: false,
+				hash: true,
+        slideNumber: 'c/t',
+        showSlideNumber: 'all',
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ],
+        markdown: {smartypants: true},
+
+			});
+		</script>
+    </body>
+</html>
